@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Home Services Demo Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#eceef0;
+        --bg-deep:#e0e4e8;
+        --surface:#ffffff;
+        --surface-2:#f4f6f7;
+        --ink:#15181c;
+        --ink-2:#3d454e;
+        --muted:#68727d;
+        --line:#d8dde1;
+        --line-strong:#c3cbd1;
+        --accent:#e8590c;
+        --accent-strong:#cf4a05;
+        --accent-soft:rgba(232,89,12,.10);
+        --accent-ink:#b44404;
+        --good:#2b8a3e;
+        --good-strong:#237032;
+        --good-soft:rgba(43,138,62,.12);
+        --warn:#b07d10;
+        --chat-bg:#eef1f3;
+        --bubble-agent:#ffffff;
+        --bubble-agent-line:#d9dee2;
+        --bubble-cust:#1971c2;
+        --bubble-cust-ink:#ffffff;
+        --phone-frame:#14171a;
+        --phone-notch:#14171a;
+        --shadow:0 18px 40px -18px rgba(20,26,32,.35), 0 4px 14px -6px rgba(20,26,32,.18);
+        --shadow-sm:0 6px 18px -8px rgba(20,26,32,.25);
+        --radius:14px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0d1013;
+          --bg-deep:#090b0d;
+          --surface:#171b1f;
+          --surface-2:#1e242a;
+          --ink:#e9edf0;
+          --ink-2:#c3ccd3;
+          --muted:#93a0ab;
+          --line:#2a3138;
+          --line-strong:#39424b;
+          --accent:#ff922b;
+          --accent-strong:#ffa94d;
+          --accent-soft:rgba(255,146,43,.13);
+          --accent-ink:#ffb35c;
+          --good:#51cf66;
+          --good-strong:#69db7c;
+          --good-soft:rgba(81,207,102,.13);
+          --warn:#ffd43b;
+          --chat-bg:#10141a;
+          --bubble-agent:#232a31;
+          --bubble-agent-line:#333d46;
+          --bubble-cust:#1864ab;
+          --shadow:0 18px 44px -16px rgba(0,0,0,.65), 0 4px 14px -6px rgba(0,0,0,.5);
+          --shadow-sm:0 6px 18px -8px rgba(0,0,0,.55);
+        }
+      }
+      *{ box-sizing:border-box; }
+      html{ -webkit-text-size-adjust:100%; }
+      body{
+        margin:0;
+        font-family:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+        background:linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+        color:var(--ink);
+        min-height:100vh;
+      }
+      .mono{ font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, monospace; }
+      .wrap{ max-width:1180px; margin:0 auto; padding:22px 18px 40px; }
+
+      /* ---------- Intro ---------- */
+      .intro{ max-width:760px; margin:2px 0 18px; }
+      .intro h1{
+        font-size:clamp(26px, 4.4vw, 40px);
+        line-height:1.04; font-weight:900; letter-spacing:-.015em;
+        margin:0 0 8px;
+      }
+      .intro h1 .hl{ color:var(--accent); }
+      .intro p{ margin:0; font-size:15.5px; line-height:1.5; color:var(--ink-2); max-width:62ch; }
+
+      /* ---------- Controls ---------- */
+      .controls{
+        background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+        box-shadow:var(--shadow-sm); padding:14px 16px; margin-bottom:18px;
+        display:flex; flex-wrap:wrap; gap:14px 22px; align-items:flex-end;
+      }
+      .ctl{ display:flex; flex-direction:column; gap:7px; }
+      .ctl label{ font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
+      .trade-chips{ display:flex; gap:8px; flex-wrap:wrap; }
+      .trade-chip{
+        font:inherit; font-size:13.5px; font-weight:700; cursor:pointer;
+        padding:8px 14px; border-radius:999px; border:1.5px solid var(--line-strong);
+        background:var(--surface-2); color:var(--ink-2); transition:border-color .15s, background .15s, color .15s;
+      }
+      .trade-chip:hover{ border-color:var(--accent); color:var(--ink); }
+      .trade-chip.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+      @media (prefers-color-scheme: dark){ .trade-chip.on{ color:#1a1206; } }
+      .biz-input{
+        font:inherit; font-size:14.5px; font-weight:600; color:var(--ink);
+        background:var(--surface-2); border:1.5px solid var(--line-strong); border-radius:10px;
+        padding:8px 12px; min-width:230px; width:100%;
+      }
+      .biz-input:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+      .ctl-actions{ display:flex; gap:9px; flex-wrap:wrap; margin-left:auto; }
+      .btn{
+        font:inherit; font-size:14px; font-weight:800; cursor:pointer; border-radius:10px;
+        padding:10px 16px; border:1.5px solid transparent; display:inline-flex; align-items:center; gap:8px;
+        transition:transform .1s, background .15s, border-color .15s, opacity .15s;
+      }
+      .btn:active{ transform:translateY(1px); }
+      .btn svg{ width:16px; height:16px; flex:none; }
+      .btn-primary{ background:var(--accent); color:#fff; box-shadow:0 8px 18px -8px var(--accent); }
+      .btn-primary:hover{ background:var(--accent-strong); }
+      @media (prefers-color-scheme: dark){ .btn-primary{ color:#1a1206; } .btn-primary:hover{ color:#1a1206; } }
+      .btn-ghost{ background:transparent; border-color:var(--line-strong); color:var(--ink-2); }
+      .btn-ghost:hover{ border-color:var(--accent); color:var(--ink); }
+      .btn[disabled]{ opacity:.45; cursor:not-allowed; box-shadow:none; }
+
+      /* ---------- Stage tracker ---------- */
+      .stages{
+        display:flex; align-items:flex-start; gap:0; margin:4px 2px 20px;
+        overflow:hidden;
+      }
+      .stage{ flex:1; display:flex; flex-direction:column; align-items:center; gap:7px; position:relative; text-align:center; }
+      .stage::before{
+        content:""; position:absolute; top:13px; left:calc(-50% + 15px); right:calc(50% + 15px);
+        height:2.5px; background:var(--line-strong); border-radius:2px;
+      }
+      .stage:first-child::before{ display:none; }
+      .stage.done::before{ background:var(--good); }
+      .stage .dot{
+        width:27px; height:27px; border-radius:50%; display:grid; place-items:center; z-index:1;
+        background:var(--surface); border:2.5px solid var(--line-strong); color:var(--muted);
+        font-size:12px; font-weight:800; transition:all .25s;
+      }
+      .stage .dot svg{ width:13px; height:13px; }
+      .stage.active .dot{ border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 5px var(--accent-soft); }
+      .stage.done .dot{ background:var(--good); border-color:var(--good); color:#fff; }
+      .stage .slabel{ font-size:11.5px; font-weight:700; color:var(--muted); line-height:1.25; padding:0 4px; }
+      .stage.active .slabel{ color:var(--ink); }
+      .stage.done .slabel{ color:var(--good-strong); }
+
+      /* ---------- Main grid ---------- */
+      .grid{ display:grid; grid-template-columns:392px minmax(0,1fr); gap:22px; align-items:start; }
+      @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
+
+      /* ---------- Phone ---------- */
+      .phone-col{ position:sticky; top:16px; }
+      @media (max-width:920px){ .phone-col{ position:static; } }
+      .phone{
+        background:var(--phone-frame); border-radius:46px; padding:11px;
+        box-shadow:var(--shadow); max-width:392px; margin:0 auto;
+      }
+      .screen{
+        background:var(--chat-bg); border-radius:36px; overflow:hidden;
+        display:flex; flex-direction:column; height:min(668px, calc(100vh - 210px)); min-height:520px;
+      }
+      .notch{ height:26px; display:flex; justify-content:center; align-items:flex-start; padding-top:6px; flex:none; }
+      .notch i{ width:96px; height:19px; border-radius:12px; background:var(--phone-notch); display:block; }
+      .statusbar{
+        display:flex; justify-content:space-between; align-items:center; padding:0 22px 4px;
+        font-size:12px; font-weight:700; color:var(--ink); flex:none;
+      }
+      .statusbar .sicons{ display:flex; gap:5px; align-items:center; color:var(--ink); }
+      .statusbar svg{ width:15px; height:11px; }
+      .contact-bar{
+        flex:none; display:flex; flex-direction:column; align-items:center; gap:1px;
+        padding:6px 12px 10px; border-bottom:1px solid var(--line);
+        background:color-mix(in srgb, var(--surface) 72%, transparent);
+      }
+      .avatar{
+        width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+        background:var(--accent); color:#fff; font-weight:900; font-size:17px; margin-bottom:3px;
+      }
+      @media (prefers-color-scheme: dark){ .avatar{ color:#1a1206; } }
+      .contact-bar .cname{ font-size:13.5px; font-weight:800; color:var(--ink); }
+      .contact-bar .cnum{ font-size:11px; color:var(--muted); }
+      .thread{
+        flex:1; overflow-y:auto; padding:14px 13px 10px; display:flex; flex-direction:column; gap:7px;
+        scroll-behavior:smooth;
+      }
+      .day-label{ align-self:center; font-size:10.5px; font-weight:700; color:var(--muted); margin:2px 0 6px; }
+      .msg{
+        max-width:79%; padding:9px 13px; border-radius:19px; font-size:14px; line-height:1.42;
+        animation:msgIn .28s ease both; word-wrap:break-word;
+      }
+      @keyframes msgIn{ from{ opacity:0; transform:translateY(7px) scale(.97); } to{ opacity:1; transform:none; } }
+      .msg.agent{
+        align-self:flex-start; background:var(--bubble-agent); color:var(--ink);
+        border:1px solid var(--bubble-agent-line); border-bottom-left-radius:5px;
+      }
+      .msg.cust{
+        align-self:flex-end; background:var(--bubble-cust); color:var(--bubble-cust-ink);
+        border-bottom-right-radius:5px;
+      }
+      .msg .who{ display:block; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; opacity:.62; margin-bottom:3px; }
+      .typing{
+        align-self:flex-start; background:var(--bubble-agent); border:1px solid var(--bubble-agent-line);
+        border-radius:19px; border-bottom-left-radius:5px; padding:12px 15px; display:flex; gap:5px;
+        animation:msgIn .2s ease both;
+      }
+      .typing i{ width:7px; height:7px; border-radius:50%; background:var(--muted); animation:tb 1.1s infinite; }
+      .typing i:nth-child(2){ animation-delay:.16s; } .typing i:nth-child(3){ animation-delay:.32s; }
+      @keyframes tb{ 0%,60%,100%{ transform:translateY(0); opacity:.45; } 30%{ transform:translateY(-4px); opacity:1; } }
+      .call-card{
+        align-self:stretch; margin:4px 2px 8px; background:var(--surface); border:1px solid var(--line);
+        border-radius:16px; padding:13px 15px; display:flex; gap:12px; align-items:center;
+        box-shadow:var(--shadow-sm); animation:msgIn .3s ease both;
+      }
+      .call-ic{
+        width:40px; height:40px; border-radius:50%; flex:none; display:grid; place-items:center;
+        background:#e03131; color:#fff;
+      }
+      .call-ic.ringing{ animation:ringPulse 1s ease-in-out infinite; background:var(--accent); }
+      .call-ic svg{ width:19px; height:19px; }
+      @keyframes ringPulse{ 0%,100%{ transform:rotate(0) scale(1); box-shadow:0 0 0 0 var(--accent-soft); } 25%{ transform:rotate(-9deg); } 75%{ transform:rotate(9deg); } 50%{ box-shadow:0 0 0 9px var(--accent-soft); } }
+      .call-card .ct{ flex:1; min-width:0; }
+      .call-card .ct b{ display:block; font-size:14px; }
+      .call-card .ct span{ font-size:12px; color:var(--muted); }
+      .call-card .cstat{ font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; }
+      .call-card .cstat.missed{ color:#e03131; }
+      .call-card .cstat.incoming{ color:var(--accent-ink); }
+      .receipt-note{
+        align-self:center; font-size:11px; color:var(--muted); background:var(--surface-2);
+        border:1px solid var(--line); border-radius:999px; padding:4px 11px; animation:msgIn .3s ease both;
+      }
+      .chips{
+        flex:none; padding:9px 12px 4px; display:flex; flex-direction:column; gap:7px;
+        border-top:1px solid transparent;
+      }
+      .chips:empty{ padding:0; }
+      .chips .chint{ font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+      .chip{
+        font:inherit; font-size:13.5px; font-weight:700; text-align:left; cursor:pointer;
+        background:var(--surface); color:var(--ink); border:1.5px solid var(--accent);
+        border-radius:13px; padding:9px 13px; display:flex; justify-content:space-between; align-items:center; gap:10px;
+        transition:background .15s, transform .1s; animation:msgIn .25s ease both;
+      }
+      .chip:hover{ background:var(--accent-soft); }
+      .chip:active{ transform:scale(.985); }
+      .chip svg{ width:14px; height:14px; color:var(--accent); flex:none; }
+      .chip.sample{ border-style:dashed; border-color:var(--line-strong); color:var(--ink-2); }
+      .chip.sample:hover{ border-color:var(--accent); background:var(--accent-soft); }
+      .composer{
+        flex:none; display:flex; gap:8px; align-items:center; padding:9px 12px 13px;
+      }
+      .composer input{
+        flex:1; font:inherit; font-size:14px; color:var(--ink); background:var(--surface);
+        border:1.5px solid var(--line-strong); border-radius:999px; padding:9px 15px; min-width:0;
+      }
+      .composer input:focus{ outline:2px solid var(--accent); outline-offset:0; border-color:var(--accent); }
+      .composer input[disabled]{ opacity:.55; }
+      .send-btn{
+        width:38px; height:38px; border-radius:50%; border:none; cursor:pointer; flex:none;
+        background:var(--bubble-cust); color:#fff; display:grid; place-items:center;
+        transition:opacity .15s, transform .1s;
+      }
+      .send-btn svg{ width:16px; height:16px; }
+      .send-btn[disabled]{ opacity:.4; cursor:not-allowed; }
+      .send-btn:active{ transform:scale(.93); }
+      .phone-caption{ text-align:center; font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.45; }
+
+      /* ---------- Console ---------- */
+      .console{ display:flex; flex-direction:column; gap:16px; min-width:0; }
+      .card{
+        background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+        box-shadow:var(--shadow-sm); overflow:hidden;
+      }
+      .card-head{
+        display:flex; align-items:center; gap:9px; padding:12px 16px 10px;
+        border-bottom:1px solid var(--line);
+      }
+      .card-head .ic{ width:26px; height:26px; border-radius:8px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent); flex:none; }
+      .card-head .ic svg{ width:14px; height:14px; }
+      .card-head h2{ font-size:13px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin:0; }
+      .card-head .live{
+        margin-left:auto; display:inline-flex; align-items:center; gap:6px;
+        font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+      }
+      .live i{ width:7px; height:7px; border-radius:50%; background:var(--line-strong); }
+      .live.on i{ background:var(--good); animation:blink 1.6s infinite; }
+      @keyframes blink{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+      .card-body{ padding:14px 16px 16px; }
+
+      .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+      @media (max-width:560px){ .stats{ grid-template-columns:1fr; } }
+      .stat{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:13px 15px; }
+      .stat .k{ font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:6px; }
+      .stat .k svg{ width:13px; height:13px; color:var(--accent); }
+      .stat .v{ font-family:"IBM Plex Mono", monospace; font-size:25px; font-weight:700; margin-top:5px; letter-spacing:-.01em; }
+      .stat .v small{ font-size:12px; color:var(--muted); font-weight:600; }
+      .stat .s{ font-size:12px; color:var(--muted); margin-top:2px; line-height:1.4; }
+      .stat.hot{ border-color:var(--accent); background:linear-gradient(180deg, var(--accent-soft), transparent 130%); }
+      .stat.good{ border-color:var(--good); }
+      .stat.good .v{ color:var(--good-strong); }
+
+      .log{ max-height:252px; overflow-y:auto; display:flex; flex-direction:column; }
+      .log-empty{ padding:18px 16px; font-size:13.5px; color:var(--muted); line-height:1.5; }
+      .log-row{
+        display:flex; gap:11px; padding:9px 16px; border-bottom:1px dashed var(--line);
+        font-size:13px; line-height:1.45; animation:msgIn .25s ease both; align-items:flex-start;
+      }
+      .log-row:last-child{ border-bottom:none; }
+      .log-row time{ font-family:"IBM Plex Mono", monospace; font-size:11px; color:var(--muted); flex:none; padding-top:2px; }
+      .log-row .ld{ width:8px; height:8px; border-radius:50%; flex:none; margin-top:5px; background:var(--line-strong); }
+      .log-row.call .ld{ background:#e03131; }
+      .log-row.ai .ld{ background:var(--accent); }
+      .log-row.book .ld{ background:var(--good); }
+      .log-row b{ font-weight:800; }
+
+      /* Value receipt */
+      .receipt{ border:1.5px dashed var(--line-strong); border-radius:10px; padding:6px 15px; background:var(--surface-2); }
+      .rrow{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:10px 0; border-bottom:1px dashed var(--line); }
+      .rrow:last-child{ border-bottom:none; }
+      .rrow .rk{ font-size:13.5px; color:var(--ink-2); line-height:1.4; }
+      .rrow .rk small{ display:block; font-size:11.5px; color:var(--muted); margin-top:1px; }
+      .rrow .rv{ font-family:"IBM Plex Mono", monospace; font-size:16px; font-weight:700; white-space:nowrap; }
+      .rrow .rv.pending{ color:var(--muted); font-size:13px; }
+      .rrow.total .rk{ font-weight:800; color:var(--ink); font-size:14.5px; }
+      .rrow.total .rv{ color:var(--good-strong); font-size:19px; }
+      .calc{ margin-top:16px; border-top:1px solid var(--line); padding-top:14px; }
+      .calc h3{ font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin:0 0 4px; color:var(--ink); }
+      .calc p.sub{ font-size:12.5px; color:var(--muted); margin:0 0 12px; line-height:1.45; }
+      .calc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; }
+      @media (max-width:560px){ .calc-grid{ grid-template-columns:1fr; } }
+      .calc-field label{ display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:var(--ink-2); margin-bottom:6px; }
+      .calc-field label output{ font-family:"IBM Plex Mono", monospace; color:var(--accent-ink); font-weight:700; }
+      .calc-field input[type=range]{ width:100%; accent-color:var(--accent); height:26px; cursor:pointer; }
+      .calc-field input[type=number]{
+        width:100%; font:inherit; font-family:"IBM Plex Mono", monospace; font-size:14px; font-weight:600;
+        background:var(--surface); color:var(--ink); border:1.5px solid var(--line-strong); border-radius:9px; padding:8px 11px;
+      }
+      .calc-out{
+        margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:12px;
+      }
+      .calc-out .co{ background:var(--accent-soft); border:1px solid var(--accent); border-radius:10px; padding:11px 14px; }
+      .calc-out .co .k{ font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--accent-ink); }
+      .calc-out .co .v{ font-family:"IBM Plex Mono", monospace; font-size:21px; font-weight:700; margin-top:3px; }
+      .receipt-foot{ font-size:11.5px; color:var(--muted); line-height:1.5; margin-top:12px; }
+
+      /* Booking banner */
+      .booked-banner{
+        display:none; gap:12px; align-items:center; background:var(--good-soft);
+        border:1.5px solid var(--good); border-radius:var(--radius); padding:13px 16px;
+      }
+      .booked-banner.show{ display:flex; animation:msgIn .35s ease both; }
+      .booked-banner .bic{ width:38px; height:38px; border-radius:50%; background:var(--good); color:#fff; display:grid; place-items:center; flex:none; }
+      .booked-banner .bic svg{ width:19px; height:19px; }
+      .booked-banner b{ font-size:15px; display:block; }
+      .booked-banner span{ font-size:13px; color:var(--ink-2); line-height:1.4; }
+
+      /* Production strip */
+      .prod{ margin-top:22px; }
+      .prod h2{ font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 11px; }
+      .prod-flow{ display:flex; flex-wrap:wrap; gap:9px; align-items:stretch; }
+      .prod-step{
+        flex:1 1 170px; background:var(--surface); border:1px solid var(--line); border-radius:12px;
+        padding:12px 14px; box-shadow:var(--shadow-sm);
+      }
+      .prod-step b{ display:block; font-size:13.5px; margin-bottom:3px; }
+      .prod-step span{ font-size:12px; color:var(--muted); line-height:1.45; display:block; }
+      .prod-arrow{ align-self:center; color:var(--muted); flex:none; }
+      .prod-arrow svg{ width:16px; height:16px; display:block; }
+      @media (max-width:700px){ .prod-arrow{ display:none; } .prod-step{ flex:1 1 100%; } }
+
+      @media (prefers-reduced-motion: reduce){
+        *, *::before, *::after{ animation-duration:.001s !important; transition-duration:.001s !important; }
+        .thread{ scroll-behavior:auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <div class="intro">
+        <h1>A customer calls. Nobody picks up.<br /><span class="hl">Watch the job get saved anyway.</span></h1>
+        <p>Crews miss calls because they're on a roof, under a sink, or driving between jobs — and most callers never ring twice. This is the live demo of the agent that texts back in seconds, qualifies the job, and books it. <strong>You're the customer:</strong> tap the replies on the phone to drive the conversation.</p>
+      </div>
+
+      <!-- Controls -->
+      <section class="controls" aria-label="Demo controls">
+        <div class="ctl">
+          <label>Trade</label>
+          <div class="trade-chips" id="tradeChips">
+            <button class="trade-chip on" data-trade="plumbing" type="button">Plumbing</button>
+            <button class="trade-chip" data-trade="hvac" type="button">HVAC</button>
+            <button class="trade-chip" data-trade="roofing" type="button">Roofing</button>
+          </div>
+        </div>
+        <div class="ctl" style="flex:1 1 230px; max-width:320px;">
+          <label for="bizName">Business name</label>
+          <input class="biz-input" id="bizName" type="text" value="Ace Plumbing Co." autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="ctl-actions">
+          <button class="btn btn-ghost" id="resetBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></svg>
+            Reset
+          </button>
+          <button class="btn btn-ghost" id="autoBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+            Auto-play
+          </button>
+          <button class="btn btn-primary" id="callBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+            Simulate missed call
+          </button>
+        </div>
+      </section>
+
+      <!-- Stages -->
+      <div class="stages" id="stages" aria-hidden="true">
+        <div class="stage" data-stage="0"><span class="dot">1</span><span class="slabel">Call missed</span></div>
+        <div class="stage" data-stage="1"><span class="dot">2</span><span class="slabel">Instant text-back</span></div>
+        <div class="stage" data-stage="2"><span class="dot">3</span><span class="slabel">Job qualified</span></div>
+        <div class="stage" data-stage="3"><span class="dot">4</span><span class="slabel">Appointment booked</span></div>
+        <div class="stage" data-stage="4"><span class="dot">5</span><span class="slabel">Owner alerted</span></div>
+      </div>
+
+      <div class="grid">
+        <!-- Phone -->
+        <div class="phone-col">
+          <div class="phone" role="img" aria-label="Phone showing the text conversation between the customer and the agent">
+            <div class="screen">
+              <div class="notch"><i></i></div>
+              <div class="statusbar">
+                <span id="clock">9:41</span>
+                <span class="sicons">
+                  <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4.5" width="3" height="7.5" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".35"/></svg>
+                  <svg viewBox="0 0 25 12" fill="none"><rect x=".7" y=".7" width="20" height="10.6" rx="2.6" stroke="currentColor" opacity=".5"/><rect x="2.4" y="2.4" width="14" height="7.2" rx="1.4" fill="currentColor"/><path d="M23 4v4a2.2 2.2 0 0 0 0-4z" fill="currentColor" opacity=".5"/></svg>
+                </span>
+              </div>
+              <div class="contact-bar">
+                <div class="avatar" id="bizAvatar">A</div>
+                <div class="cname" id="bizTitle">Ace Plumbing Co.</div>
+                <div class="cnum">Text Message · (555) 013-4471</div>
+              </div>
+              <div class="thread" id="thread">
+                <div class="day-label" id="dayLabel">Today</div>
+              </div>
+              <div class="chips" id="chips"></div>
+              <form class="composer" id="composer">
+                <input id="custInput" type="text" placeholder="Tap a reply above…" autocomplete="off" disabled />
+                <button class="send-btn" id="sendBtn" type="submit" disabled aria-label="Send message">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5"/><path d="M5 12l7-7 7 7"/></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+          <p class="phone-caption">You're playing the customer. The business never touches their phone — every grey message is the agent, working on its own.</p>
+        </div>
+
+        <!-- Console -->
+        <div class="console">
+          <div class="booked-banner" id="bookedBanner">
+            <div class="bic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+            </div>
+            <div>
+              <b id="bookedTitle">Job booked</b>
+              <span id="bookedDetail">The customer got a confirmation text and the owner got an alert — nobody answered a phone.</span>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat" id="statResp">
+              <div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/></svg>Text-back speed</div>
+              <div class="v" id="respVal">—</div>
+              <div class="s">From missed call to first text. The usual callback takes hours — if it happens at all.</div>
+            </div>
+            <div class="stat">
+              <div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.4-.7L3 20l1-4.9a8.4 8.4 0 1 1 17-3.6z"/></svg>Handled by the agent</div>
+              <div class="v"><span id="aiCount">0</span> <small>messages</small></div>
+              <div class="s">Questions answered and details collected with zero owner time.</div>
+            </div>
+            <div class="stat" id="statValue">
+              <div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 6V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1"/></svg>Job on the board</div>
+              <div class="v" id="jobVal">—</div>
+              <div class="s" id="jobLabel">Nothing booked yet. Run the demo.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg></span>
+              <h2>What the owner sees</h2>
+              <span class="live" id="liveTag"><i></i>Idle</span>
+            </div>
+            <div class="log" id="log">
+              <div class="log-empty">Nothing yet. Hit <b>Simulate missed call</b> — or press <b>Auto-play</b> and watch the whole thing run hands-free.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l4 4v16H6z"/><path d="M14 2v5h5"/><path d="M9 13h7M9 17h7"/></svg></span>
+              <h2>Value receipt — this one call</h2>
+            </div>
+            <div class="card-body">
+              <div class="receipt">
+                <div class="rrow">
+                  <div class="rk">Response to a missed call<small>vs. a callback hours later, after they've already rung a competitor</small></div>
+                  <div class="rv pending" id="rResp">Not yet</div>
+                </div>
+                <div class="rrow">
+                  <div class="rk">Owner time spent on this lead<small>no phone tag, no voicemail, no "sorry, who is this?"</small></div>
+                  <div class="rv pending" id="rTime">—</div>
+                </div>
+                <div class="rrow">
+                  <div class="rk">Outcome of the conversation<small id="rOutcomeSub">waiting for the call…</small></div>
+                  <div class="rv pending" id="rOutcome">—</div>
+                </div>
+                <div class="rrow total">
+                  <div class="rk">Revenue on the board from one saved call</div>
+                  <div class="rv" id="rValue">$0</div>
+                </div>
+              </div>
+
+              <div class="calc">
+                <h3>Now do the monthly math — with their numbers</h3>
+                <p class="sub">Ask the owner two questions on the call — "How many calls do you miss in a month?" and "What does an average job pay?" — then move the sliders and let them watch.</p>
+                <div class="calc-grid">
+                  <div class="calc-field">
+                    <label>Missed calls / month <output id="oCalls">14</output></label>
+                    <input type="range" id="inCalls" min="2" max="40" step="1" value="14" />
+                  </div>
+                  <div class="calc-field">
+                    <label>Of those, % that book <output id="oRate">50%</output></label>
+                    <input type="range" id="inRate" min="10" max="90" step="5" value="50" />
+                  </div>
+                  <div class="calc-field">
+                    <label>Average job value ($)</label>
+                    <input type="number" id="inValue" min="50" max="20000" step="10" value="450" />
+                  </div>
+                  <div class="calc-field">
+                    <label>Owner minutes saved / missed call</label>
+                    <input type="number" id="inMins" min="0" max="120" step="5" value="15" />
+                  </div>
+                </div>
+                <div class="calc-out">
+                  <div class="co"><div class="k">Recovered revenue / month</div><div class="v" id="outMonth">$3,150</div></div>
+                  <div class="co"><div class="k">Recovered revenue / year</div><div class="v" id="outYear">$37,800</div></div>
+                </div>
+                <div class="calc-out" style="margin-top:12px;">
+                  <div class="co" style="background:var(--good-soft); border-color:var(--good);"><div class="k" style="color:var(--good-strong);">Owner hours given back / month</div><div class="v" id="outHours">3.5 hrs</div></div>
+                  <div class="co" style="background:var(--good-soft); border-color:var(--good);"><div class="k" style="color:var(--good-strong);">Extra booked jobs / month</div><div class="v" id="outJobs">7</div></div>
+                </div>
+                <p class="receipt-foot">These are the prospect's own numbers, typed in live — not a promise. What the demo above proves is the mechanism: the text goes out in seconds, every time, including at 9pm on a Sunday.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Production strip -->
+      <section class="prod">
+        <h2>How this runs for a real business</h2>
+        <div class="prod-flow">
+          <div class="prod-step"><b>Missed call detected</b><span>Their existing number (Twilio) notices the unanswered call and fires a webhook — no new hardware, no app to learn.</span></div>
+          <div class="prod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M14 6l6 6-6 6"/></svg></div>
+          <div class="prod-step"><b>Agent texts back in seconds</b><span>An n8n workflow + AI model replies in the business's voice, asks the qualifying questions, and checks urgency.</span></div>
+          <div class="prod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M14 6l6 6-6 6"/></svg></div>
+          <div class="prod-step"><b>Job lands on the calendar</b><span>The appointment is written to Google Calendar, a confirmation text goes to the customer, and a reminder fires an hour before.</span></div>
+          <div class="prod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M14 6l6 6-6 6"/></svg></div>
+          <div class="prod-step"><b>Owner gets one alert</b><span>One SMS: who, what's wrong, when it's booked, what's it's worth. The owner stays on the tools — the agent handles the phone.</span></div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      "use strict";
+
+      /* ================= Data ================= */
+      var SLOTS = ["Today · 2:00–4:00 PM", "Today · 4:00–6:00 PM", "Tomorrow · 8:00–10:00 AM"];
+
+      var TRADES = {
+        plumbing: {
+          business: "Ace Plumbing Co.",
+          initial: "A",
+          problem: "My water heater is leaking all over the garage floor",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, the crew's out on a job. What can we help with today?";
+          },
+          hours: "We're on call 24/7 for emergencies, and the office runs Mon–Sat, 8am–6pm. Was there something you needed a hand with today?",
+          hoursBye: "No problem at all. Save this number — if anything comes up, just text us here and we'll pick it straight up.",
+          urgencyQ: "Got it, let's get that sorted. Is water still actively leaking, or has it stopped?",
+          urgencyOpts: ["Still leaking — getting worse", "It stopped, just a puddle now"],
+          urgencyReply: [
+            "Okay, that's urgent. If you can reach it, turn the water off at the valve on top of the heater — that'll slow it down. I'll line up our first available tech for today.",
+            "Good — that gives us a little breathing room. I'll still get a tech out today so a small leak doesn't turn into a flooded garage."
+          ],
+          identityAsk: "Can I take your name and the address where the heater is?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here's what I can offer — which suits you?";
+          },
+          visitFee: 89,
+          confirmMsg: function (slot) {
+            return "You're booked for " + slot + ". You'll get a text when the tech is on his way, and a reminder an hour before. The visit fee is $89 — waived completely if you go ahead with the repair.";
+          },
+          costQ: "How much might the repair cost?",
+          cost: "Fair question. Most water-heater repairs land between $350–$650 depending on the part. The tech confirms the exact price on site before any work starts, so there are no surprises.",
+          jobValue: 450,
+          jobLabel: "Water heater repair · average ticket $450",
+          jobShort: "Water heater repair"
+        },
+        hvac: {
+          business: "CoolAir Heating & AC",
+          initial: "C",
+          problem: "Our AC has stopped working and the house is up to 86 degrees",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, all our techs are out on calls. What's going on with your system?";
+          },
+          hours: "We run emergency callouts 24/7, with office hours Mon–Sat, 8am–6pm. Is your system acting up right now?",
+          hoursBye: "Anytime. Keep this number saved — text us here whenever you need us and we'll take it from there.",
+          urgencyQ: "Sorry you're dealing with that. Is anyone at home especially vulnerable to the heat — young kids, elderly family, pets?",
+          urgencyOpts: ["Yes — my elderly mom is here", "We're coping, just uncomfortable"],
+          urgencyReply: [
+            "Then we'll treat this as a priority call. Keep her somewhere with a fan and plenty of water — I'll get our first available tech to you today.",
+            "Understood — still miserable in this heat, so let's get you back up and running today."
+          ],
+          identityAsk: "Can I take your name and the address for the visit?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". I have a few openings — which works best?";
+          },
+          visitFee: 79,
+          confirmMsg: function (slot) {
+            return "Booked for " + slot + ". We'll text you when the tech sets off, plus a reminder an hour before. The diagnostic visit is $79 — waived if you go ahead with the repair.";
+          },
+          costQ: "Roughly what will this cost me?",
+          cost: "Most AC repairs run $300–$800: a failed capacitor sits near the low end, a compressor near the high end. You get the exact quote on site before anything is fitted.",
+          jobValue: 520,
+          jobLabel: "AC repair · average ticket $520",
+          jobShort: "AC repair"
+        },
+        roofing: {
+          business: "Summit Roofing",
+          initial: "S",
+          problem: "After last night's storm, water is dripping through our ceiling",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, the crews are out on roofs. What's happened at your place?";
+          },
+          hours: "We're out on jobs Mon–Sat, and storm-damage callouts run around the clock. Has the storm left you with damage we should look at?",
+          hoursBye: "No problem. Save this number — after any storm, a text here is the fastest way to reach us.",
+          urgencyQ: "Sorry to hear that — let's get it covered. Is it actively dripping right now, or is it a stain so far?",
+          urgencyOpts: ["Actively dripping through the ceiling", "Just a stain so far"],
+          urgencyReply: [
+            "Put a bucket under it and move anything valuable out of the way. I'll get a crew out today to tarp it and stop the damage spreading.",
+            "Good catch — stains today are leaks next month. I'll book an assessment today so we can see what's going on up there."
+          ],
+          identityAsk: "Can I take your name and the address of the property?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here's when a crew can be with you:";
+          },
+          visitFee: 0,
+          confirmMsg: function (slot) {
+            return "Booked for " + slot + ". The crew will text when they're on their way, and you'll get a reminder an hour before. The inspection itself is free, with photos of everything we find.";
+          },
+          costQ: "What does a repair usually cost?",
+          cost: "Emergency tarping runs $250–$450 to stop the water. The repair quote depends on the damage — we photograph everything, which also gives you what you need for an insurance claim.",
+          jobValue: 780,
+          jobLabel: "Roof repair · average ticket $780",
+          jobShort: "Roof repair"
+        }
+      };
+
+      var QUICK_IDENTITY = "Sarah Mitchell, 421 Maple Street";
+
+      /* ================= State ================= */
+      var S = {
+        trade: "plumbing",
+        stage: "idle", // idle | ringing | greeted | urgency | identity | slot | post | done
+        runId: 0,
+        aiCount: 0,
+        startT: 0,
+        respMs: null,
+        name: "",
+        firstName: "",
+        slot: "",
+        booked: false,
+        autoPlaying: false
+      };
+
+      /* ================= DOM helpers ================= */
+      function $(id) { return document.getElementById(id); }
+      var thread = $("thread"), chipsBox = $("chips"), logBox = $("log"),
+          custInput = $("custInput"), sendBtn = $("sendBtn"), composer = $("composer");
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      function scrollThread() { thread.scrollTop = thread.scrollHeight; }
+      function nowTime() {
+        var d = new Date();
+        return d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      }
+      function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+      function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+      function bizName() {
+        var v = $("bizName").value.trim();
+        return v || TRADES[S.trade].business;
+      }
+
+      /* ================= Phone rendering ================= */
+      function addMsg(who, text) {
+        var d = document.createElement("div");
+        d.className = "msg " + (who === "agent" ? "agent" : "cust");
+        if (who === "agent") {
+          d.innerHTML = '<span class="who">' + esc(bizName()) + " · automated</span>" + esc(text);
+        } else {
+          d.textContent = text;
+        }
+        thread.appendChild(d);
+        scrollThread();
+        return d;
+      }
+
+      var typingEl = null;
+      function showTyping() {
+        hideTyping();
+        typingEl = document.createElement("div");
+        typingEl.className = "typing";
+        typingEl.innerHTML = "<i></i><i></i><i></i>";
+        thread.appendChild(typingEl);
+        scrollThread();
+      }
+      function hideTyping() { if (typingEl) { typingEl.remove(); typingEl = null; } }
+
+      function addNote(text) {
+        var d = document.createElement("div");
+        d.className = "receipt-note";
+        d.textContent = text;
+        thread.appendChild(d);
+        scrollThread();
+      }
+
+      function setChips(list, hint) {
+        chipsBox.innerHTML = "";
+        if (!list || !list.length) return;
+        if (hint) {
+          var h = document.createElement("div");
+          h.className = "chint";
+          h.textContent = hint;
+          chipsBox.appendChild(h);
+        }
+        list.forEach(function (c) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "chip" + (c.sample ? " sample" : "");
+          b.innerHTML = "<span>" + esc(c.label) + "</span>" +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+          b.addEventListener("click", function () { c.action(); });
+          chipsBox.appendChild(b);
+        });
+        scrollThread();
+      }
+      function clearChips() { chipsBox.innerHTML = ""; }
+
+      function setComposer(enabled, placeholder) {
+        custInput.disabled = !enabled;
+        sendBtn.disabled = !enabled;
+        custInput.placeholder = placeholder;
+        if (enabled) custInput.focus({ preventScroll: true });
+      }
+
+      /* ================= Owner log ================= */
+      function logEvent(kind, html) {
+        var empty = logBox.querySelector(".log-empty");
+        if (empty) empty.remove();
+        var row = document.createElement("div");
+        row.className = "log-row " + kind;
+        row.innerHTML = "<time>" + nowTime() + '</time><span class="ld"></span><div>' + html + "</div>";
+        logBox.appendChild(row);
+        logBox.scrollTop = logBox.scrollHeight;
+      }
+
+      /* ================= Stages ================= */
+      function setStage(n) {
+        var els = document.querySelectorAll("#stages .stage");
+        els.forEach(function (el, i) {
+          el.classList.toggle("done", i < n);
+          el.classList.toggle("active", i === n);
+          var dot = el.querySelector(".dot");
+          dot.innerHTML = i < n
+            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>'
+            : String(i + 1);
+        });
+      }
+
+      /* ================= Stats / receipt ================= */
+      function fmtResp(ms) {
+        if (ms == null) return "—";
+        if (ms < 1000) return Math.round(ms) + " ms";
+        return (ms / 1000).toFixed(1) + " s";
+      }
+      function refreshStats() {
+        $("aiCount").textContent = S.aiCount;
+        $("respVal").textContent = S.respMs == null ? "—" : fmtResp(S.respMs);
+        $("statResp").classList.toggle("hot", S.respMs != null && S.respMs < 5000);
+        if (S.booked) {
+          var t = TRADES[S.trade];
+          $("jobVal").textContent = money(t.jobValue);
+          $("jobLabel").textContent = t.jobLabel + " · " + S.slot;
+          $("statValue").classList.add("good");
+        }
+      }
+      function refreshReceipt() {
+        var t = TRADES[S.trade];
+        var rResp = $("rResp"), rTime = $("rTime"), rOutcome = $("rOutcome"), rValue = $("rValue");
+        if (S.respMs != null) {
+          rResp.textContent = fmtResp(S.respMs);
+          rResp.classList.remove("pending");
+          rTime.textContent = "0 min";
+          rTime.classList.remove("pending");
+        }
+        if (S.booked) {
+          rOutcome.textContent = "Booked";
+          rOutcome.classList.remove("pending");
+          $("rOutcomeSub").textContent = t.jobShort + " · " + S.slot + " · " + S.name;
+          rValue.textContent = money(t.jobValue);
+        } else if (S.stage === "done") {
+          rOutcome.textContent = "Answered";
+          rOutcome.classList.remove("pending");
+          $("rOutcomeSub").textContent = "question handled end-to-end by the agent";
+          rValue.textContent = money(0);
+        }
+      }
+
+      /* ================= Agent send ================= */
+      function agentSay(text, after) {
+        var myRun = S.runId;
+        showTyping();
+        var delay = Math.min(700 + text.length * 11, 1900);
+        setTimeout(function () {
+          if (myRun !== S.runId) return;
+          hideTyping();
+          if (S.stage === "textback") {
+            S.respMs = performance.now() - S.startT;
+            S.stage = "greeted";
+          }
+          addMsg("agent", text);
+          S.aiCount++;
+          refreshStats(); refreshReceipt();
+          if (after) after();
+        }, delay);
+      }
+
+      /* ================= Flow ================= */
+      function startCall() {
+        if (S.stage !== "idle") return;
+        var t = TRADES[S.trade];
+        S.stage = "ringing";
+        S.runId++;
+        var myRun = S.runId;
+        $("callBtn").disabled = true;
+        $("liveTag").classList.add("on");
+        $("liveTag").lastChild.textContent = "Live";
+        setStage(0);
+
+        var card = document.createElement("div");
+        card.className = "call-card";
+        card.innerHTML =
+          '<div class="call-ic ringing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></div>' +
+          '<div class="ct"><b>(555) 014-2288</b><span>Incoming call · customer found you on Google</span></div>' +
+          '<span class="cstat incoming">Ringing…</span>';
+        thread.appendChild(card);
+        scrollThread();
+        logEvent("call", "<b>Incoming call</b> from (555) 014-2288 — the crew is mid-job, nobody can pick up.");
+
+        setTimeout(function () {
+          if (myRun !== S.runId) return;
+          var ic = card.querySelector(".call-ic");
+          ic.classList.remove("ringing");
+          var st = card.querySelector(".cstat");
+          st.textContent = "Missed";
+          st.className = "cstat missed";
+          logEvent("call", "<b>Call missed.</b> No voicemail left — most callers just move on to the next company on Google.");
+          S.startT = performance.now();
+          S.stage = "textback";
+          setStage(1);
+          agentSay(t.greeting(bizName()), function () {
+            logEvent("ai", "<b>Text-back sent in " + fmtResp(S.respMs) + ".</b> The customer is now talking to the agent instead of a competitor.");
+            setStage(2);
+            setChips([
+              { label: t.problem, action: chooseProblem },
+              { label: "Quick one — what are your opening hours?", action: chooseHours }
+            ], "Reply as the customer");
+          });
+        }, 2100);
+      }
+
+      function chooseProblem() {
+        if (S.stage !== "greeted") return;
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", t.problem);
+        S.stage = "urgency";
+        logEvent("ai", "<b>Problem captured:</b> " + esc(t.jobShort.toLowerCase()) + ". Agent is qualifying urgency.");
+        agentSay(t.urgencyQ, function () {
+          setChips(t.urgencyOpts.map(function (o, i) {
+            return { label: o, action: function () { chooseUrgency(i); } };
+          }), "Reply as the customer");
+        });
+      }
+
+      function chooseHours() {
+        if (S.stage !== "greeted") return;
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", "Quick one — what are your opening hours?");
+        logEvent("ai", "<b>Hours question answered</b> from the business info the agent was trained on — owner never touched the phone.");
+        agentSay(t.hours, function () {
+          setChips([
+            { label: t.problem, action: chooseProblem },
+            { label: "That's all I needed, thanks", action: chooseHoursBye }
+          ], "Reply as the customer");
+        });
+      }
+
+      function chooseHoursBye() {
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", "That's all I needed, thanks");
+        S.stage = "done";
+        agentSay(t.hoursBye, function () {
+          logEvent("ai", "<b>Conversation closed.</b> One customer question handled, 0 minutes of owner time, 0 calls returned.");
+          finishDemo(false);
+        });
+      }
+
+      function chooseUrgency(i) {
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", t.urgencyOpts[i]);
+        S.stage = "identity";
+        logEvent("ai", i === 0
+          ? "<b>Flagged urgent.</b> Agent gave an immediate damage-control step, then moved to booking."
+          : "<b>Qualified:</b> not an emergency, but still booked for today before it becomes one.");
+        agentSay(t.urgencyReply[i], function () {
+          agentSay(t.identityAsk, function () {
+            setComposer(true, "Type name & address, then send…");
+            setChips([
+              { label: "Use sample: " + QUICK_IDENTITY, sample: true, action: function () { submitIdentity(QUICK_IDENTITY); } }
+            ], "Or tap to fill it in");
+          });
+        });
+      }
+
+      function submitIdentity(text) {
+        text = (text || "").trim();
+        if (!text || S.stage !== "identity") return;
+        var t = TRADES[S.trade];
+        clearChips();
+        setComposer(false, "Tap a reply above…");
+        custInput.value = "";
+        addMsg("cust", text);
+        S.name = text.replace(/,.*$/, "").trim();
+        var first = S.name.split(/\s+/)[0] || "there";
+        S.firstName = first.charAt(0).toUpperCase() + first.slice(1);
+        S.stage = "slot";
+        logEvent("ai", "<b>Lead captured:</b> " + esc(S.name) + " — name and address collected, ready to book.");
+        agentSay(t.slotIntro(S.firstName), function () {
+          setChips(SLOTS.map(function (s) {
+            return { label: s, action: function () { chooseSlot(s); } };
+          }), "Pick a slot as the customer");
+        });
+      }
+
+      function chooseSlot(slot) {
+        if (S.stage !== "slot") return;
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", slot);
+        S.slot = slot;
+        S.booked = true;
+        S.stage = "post";
+        setStage(3);
+        logEvent("book", "<b>Appointment booked:</b> " + esc(t.jobShort) + " · " + esc(slot) + " · " + esc(S.name) + ". Written to the calendar automatically.");
+        agentSay(t.confirmMsg(slot), function () {
+          addNote("Reminder scheduled · 1 hour before the visit");
+          setStage(4);
+          logEvent("book", "<b>Owner alert sent:</b> \"New booking — " + esc(S.firstName) + ", " + esc(t.jobShort.toLowerCase()) + ", " + esc(slot) + ", est. " + money(t.jobValue) + ".\" One text. That's all the owner does.");
+          showBookedBanner();
+          setChips([
+            { label: t.costQ, action: chooseCost },
+            { label: "That's all, thanks!", action: chooseThanks }
+          ], "Reply as the customer");
+          refreshStats(); refreshReceipt();
+        });
+      }
+
+      function chooseCost() {
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", t.costQ);
+        logEvent("ai", "<b>Price question handled</b> with the rate card the owner approved — no discounting, no guessing.");
+        agentSay(t.cost, function () {
+          setChips([{ label: "That's all, thanks!", action: chooseThanks }], "Reply as the customer");
+        });
+      }
+
+      function chooseThanks() {
+        var t = TRADES[S.trade];
+        clearChips();
+        addMsg("cust", "That's all, thanks!");
+        var closing = "Anytime, " + (S.firstName || "thanks") + "! We'll see you " + S.slot.toLowerCase() + ". If anything changes, just text us here. — " + bizName();
+        if (!S.booked) closing = "Anytime! If anything comes up, just text us here. — " + bizName();
+        agentSay(closing, function () {
+          S.stage = "done";
+          finishDemo(true);
+        });
+      }
+
+      function showBookedBanner() {
+        var t = TRADES[S.trade];
+        $("bookedTitle").textContent = "Job booked — " + money(t.jobValue) + " on the board";
+        $("bookedDetail").textContent = t.jobShort + " · " + S.slot + " · " + S.name + ". Confirmation text sent, owner alerted, reminder scheduled.";
+        $("bookedBanner").classList.add("show");
+      }
+
+      function finishDemo() {
+        clearChips();
+        setChips([
+          { label: "Replay the demo", action: function () { resetDemo(); startCall(); } },
+          { label: "Try a different trade (chips above) then run it again", sample: true, action: function () { resetDemo(); } }
+        ], "Demo complete");
+      }
+
+      /* ================= Reset ================= */
+      function resetDemo() {
+        S.runId++;
+        S.stage = "idle"; S.aiCount = 0; S.respMs = null; S.startT = 0;
+        S.name = ""; S.firstName = ""; S.slot = ""; S.booked = false; S.autoPlaying = false;
+        hideTyping();
+        thread.innerHTML = '<div class="day-label">Today</div>';
+        logBox.innerHTML = '<div class="log-empty">Nothing yet. Hit <b>Simulate missed call</b> — or press <b>Auto-play</b> and watch the whole thing run hands-free.</div>';
+        clearChips();
+        setComposer(false, "Tap a reply above…");
+        custInput.value = "";
+        $("bookedBanner").classList.remove("show");
+        $("statValue").classList.remove("good");
+        $("jobVal").textContent = "—";
+        $("jobLabel").textContent = "Nothing booked yet. Run the demo.";
+        $("liveTag").classList.remove("on");
+        $("liveTag").lastChild.textContent = "Idle";
+        $("callBtn").disabled = false;
+        $("autoBtn").disabled = false;
+        var rResp = $("rResp"), rTime = $("rTime"), rOutcome = $("rOutcome");
+        [rResp, rTime, rOutcome].forEach(function (el) { el.classList.add("pending"); });
+        rResp.textContent = "Not yet"; rTime.textContent = "—"; rOutcome.textContent = "—";
+        $("rOutcomeSub").textContent = "waiting for the call…";
+        $("rValue").textContent = "$0";
+        setStage(-1);
+        refreshStats();
+      }
+
+      /* ================= Auto-play ================= */
+      function waitForStage(stage, runId) {
+        return new Promise(function (resolve, reject) {
+          var t0 = Date.now();
+          (function poll() {
+            if (runId !== S.runId) return reject(new Error("reset"));
+            if (S.stage === stage) return resolve();
+            if (Date.now() - t0 > 20000) return reject(new Error("timeout"));
+            setTimeout(poll, 160);
+          })();
+        });
+      }
+      function waitForChips(runId) {
+        return new Promise(function (resolve, reject) {
+          var t0 = Date.now();
+          (function poll() {
+            if (runId !== S.runId) return reject(new Error("reset"));
+            if (chipsBox.querySelector(".chip")) return resolve();
+            if (Date.now() - t0 > 20000) return reject(new Error("timeout"));
+            setTimeout(poll, 160);
+          })();
+        });
+      }
+      function clickChip(i) {
+        var chips = chipsBox.querySelectorAll(".chip");
+        if (chips[i]) chips[i].click();
+      }
+
+      async function autoPlay() {
+        if (S.autoPlaying) return;
+        resetDemo();
+        S.autoPlaying = true;
+        $("autoBtn").disabled = true;
+        try {
+          await sleep(450);
+          startCall();
+          var myRun = S.runId;
+          await waitForChips(myRun); await sleep(650);
+          clickChip(0);                       // problem
+          await waitForChips(myRun); await sleep(650);
+          clickChip(0);                       // urgency: still leaking / vulnerable / dripping
+          await waitForChips(myRun); await sleep(650);
+          clickChip(0);                       // sample identity
+          await waitForChips(myRun); await sleep(650);
+          clickChip(0);                       // first slot
+          await waitForChips(myRun); await sleep(650);
+          clickChip(1);                       // "That's all, thanks!"
+        } catch (e) { /* reset or timeout — stop quietly */ }
+        S.autoPlaying = false;
+        var ab = $("autoBtn");
+        if (ab) ab.disabled = false;
+      }
+
+      /* ================= Calculator ================= */
+      function refreshCalc() {
+        var calls = parseFloat($("inCalls").value) || 0;
+        var rate = parseFloat($("inRate").value) || 0;
+        var value = parseFloat($("inValue").value) || 0;
+        var mins = parseFloat($("inMins").value) || 0;
+        var jobs = calls * rate / 100;
+        $("oCalls").textContent = calls;
+        $("oRate").textContent = rate + "%";
+        $("outMonth").textContent = money(jobs * value);
+        $("outYear").textContent = money(jobs * value * 12);
+        $("outJobs").textContent = (Math.round(jobs * 10) / 10).toLocaleString("en-US");
+        var hrs = calls * mins / 60;
+        $("outHours").textContent = (Math.round(hrs * 10) / 10) + " hrs";
+      }
+      ["inCalls", "inRate", "inValue", "inMins"].forEach(function (id) {
+        $(id).addEventListener("input", refreshCalc);
+      });
+
+      /* ================= Wiring ================= */
+      function updateBizChrome() {
+        var t = TRADES[S.trade];
+        $("bizTitle").textContent = bizName();
+        $("bizAvatar").textContent = (bizName().charAt(0) || t.initial).toUpperCase();
+      }
+
+      $("tradeChips").addEventListener("click", function (e) {
+        var btn = e.target.closest(".trade-chip");
+        if (!btn) return;
+        document.querySelectorAll(".trade-chip").forEach(function (c) { c.classList.remove("on"); });
+        btn.classList.add("on");
+        S.trade = btn.getAttribute("data-trade");
+        $("bizName").value = TRADES[S.trade].business;
+        $("inValue").value = TRADES[S.trade].jobValue;
+        resetDemo();
+        updateBizChrome();
+        refreshCalc();
+      });
+
+      $("bizName").addEventListener("input", updateBizChrome);
+      $("callBtn").addEventListener("click", startCall);
+      $("resetBtn").addEventListener("click", resetDemo);
+      $("autoBtn").addEventListener("click", autoPlay);
+
+      composer.addEventListener("submit", function (e) {
+        e.preventDefault();
+        submitIdentity(custInput.value);
+      });
+
+      /* Clock in the phone status bar */
+      function tickClock() {
+        var d = new Date();
+        var h = d.getHours() % 12; if (h === 0) h = 12;
+        var m = String(d.getMinutes()).padStart(2, "0");
+        $("clock").textContent = h + ":" + m;
+      }
+      tickClock();
+      setInterval(tickClock, 20000);
+
+      /* Init */
+      resetDemo();
+      updateBizChrome();
+      refreshCalc();
+    </script>
+  </body>
+</html>
