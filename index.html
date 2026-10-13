@@ -163,10 +163,24 @@
     .stack-stage{height:auto}
     .invoice,.invoice.show{position:relative;left:auto;top:auto;opacity:1;transform:none;margin:0 0 18px;width:100%}
   }
+
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,14,19,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+  .logo{font:800 22px/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;text-decoration:none;color:var(--ink)}
+  .logo span{color:var(--accent)}
+  .btn-small{min-height:44px;padding:0 20px;font-size:15px}
+  .hero{padding-top:170px}
+  @media(max-width:900px){.hero{padding-top:140px}.logo{font-size:19px}}
 </style>
 </head>
 <body>
-<div class="topline"></div>
+<header class="site-header">
+  <div class="topline"></div>
+  <div class="wrap header-inner">
+    <a class="logo" href="/">NEVER MISS <span>CALLS</span></a>
+    <a class="btn btn-primary btn-small" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a call</a>
+  </div>
+</header>
 
 <header class="hero">
   <div class="wrap">
