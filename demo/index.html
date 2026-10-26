@@ -413,6 +413,8 @@
             <button class="trade-chip" data-trade="roofing" type="button">Roofing</button>
             <button class="trade-chip" data-trade="electrical" type="button">Electrical</button>
             <button class="trade-chip" data-trade="barber" type="button">Barber Shop</button>
+            <button class="trade-chip" data-trade="dental" type="button">Dentist / Clinic</button>
+            <button class="trade-chip" data-trade="restaurant" type="button">Restaurant</button>
           </div>
         </div>
         <div class="ctl" style="flex:1 1 230px; max-width:320px;">
@@ -770,6 +772,68 @@
           jobValue: 35,
           jobLabel: "Haircut · $35 today, $400+ a year as a regular",
           jobShort: "Haircut booking"
+        },
+        dental: {
+          business: "BrightSmile Dental",
+          initial: "B",
+          problem: "Hi, do you have any checkup appointments this week? I called twice and nobody answered",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, our front desk was with a patient. I can book you in right here if you like?";
+          },
+          hours: "We're open Mon–Sat, 9am–6pm. Were you hoping for this week?",
+          hoursBye: "No problem at all. Save this number — next time you need us, just text here and we'll book you straight in.",
+          urgencyQ: "Got it. Is it a routine checkup and clean, or are you in any pain?",
+          urgencyOpts: ["Just a checkup and clean", "Tooth pain — need to be seen soon"],
+          urgencyReply: [
+            "Perfect — a checkup and clean takes about an hour, and new patients get the full exam included.",
+            "I'm sorry you're dealing with that. We keep early slots each morning for patients in pain — I'll get you the earliest one. We won't ask for medical details by text; the dentist takes care of that in the chair."
+          ],
+          bookedLabel: "Appointment booked",
+          sampleIdentity: "Emily Ross",
+          identityAsk: "Can I take your full name for the appointment?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here are the appointments I have open — which suits you?";
+          },
+          visitFee: 0,
+          confirmMsg: function (slot) {
+            return "You're booked for " + slot + ". You'll get a reminder the day before. If you need to move it, just reply here — please give us a day's notice so we can offer the slot to another patient.";
+          },
+          costQ: "How much is a checkup?",
+          cost: "A new-patient checkup and clean is $180, including the exam and X-rays if the dentist needs them. Nothing to pay now — you pay at the clinic after your visit.",
+          jobValue: 180,
+          jobLabel: "New patient checkup · $180 first visit, $1,000+ over the years",
+          jobShort: "Dental appointment"
+        },
+        restaurant: {
+          business: "Casa Verde",
+          initial: "C",
+          problem: "Hi, can I book a table for Friday evening? I called but nobody picked up",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, the whole team is on the floor with guests. I can take your reservation right here if you like?";
+          },
+          hours: "We serve dinner Tue–Sun, 5pm–11pm, kitchen closes at 10:30pm. Were you thinking this Friday?",
+          hoursBye: "No problem at all. Save this number — text us here any time and we'll sort your table.",
+          urgencyQ: "Lovely. How many guests will it be?",
+          urgencyOpts: ["Table for 2", "Table for 6 — family dinner"],
+          urgencyReply: [
+            "A table for two — nice and easy, I'll find you a good spot by the window.",
+            "Six for a family dinner — I'll put you on one of our big round tables so nobody is squeezed."
+          ],
+          bookedLabel: "Table reserved",
+          sampleIdentity: "Daniel Price",
+          identityAsk: "Can I take a name for the reservation?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here are the times I have open Friday — which suits you?";
+          },
+          visitFee: 0,
+          confirmMsg: function (slot) {
+            return "Your table is reserved for " + slot + ". We'll text you a reminder on the day. Running late? Reply here — we hold tables for 15 minutes.";
+          },
+          costQ: "Do you charge to book a table?",
+          cost: "No charge to reserve — you just pay for your meal on the night. For parties of 8 or more we may ask for a small deposit, and catering is quoted separately.",
+          jobValue: 140,
+          jobLabel: "Table for 6 · $140 average table — catering runs $500+",
+          jobShort: "Table reservation"
         }
       };
 
