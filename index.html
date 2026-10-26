@@ -13,10 +13,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Never Miss Calls — Missed calls turned into booked jobs</title>
 <link rel="canonical" href="https://nevermissacalls.com/" />
-<meta name="description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, and other home-service teams. Never miss another call." />
+<meta name="description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, electricians, barber shops, salons, auto repair, and other local teams that live on bookings. Never miss another call." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Never Miss Calls — Missed calls turned into booked jobs" />
-<meta property="og:description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, and other home-service teams." />
+<meta property="og:description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, electricians, barber shops, salons, auto repair, and other local teams that live on bookings." />
 <meta property="og:url" content="https://nevermissacalls.com/" />
 <meta property="og:image" content="https://nevermissacalls.com/og-cover.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -72,6 +72,24 @@
   .step .n{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
   .step h3{font-size:30px;margin-bottom:12px}
   .step p{margin:0;color:var(--muted);font-size:16px}
+  /* trades */
+  .trades{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:50px;border:1px solid var(--line)}
+  .trade{padding:34px 28px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+  .trade:nth-child(-n+3){border-top:0}
+  .trade:nth-child(3n+1){border-left:0}
+  .trade .n{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
+  .trade h3{font-size:30px;margin-bottom:12px}
+  .trade p{margin:0;color:var(--muted);font-size:16px}
+  .trade .money{margin-top:14px;color:var(--ink);font-weight:700;font-size:15px}
+  .note-box{margin-top:34px;border:1px solid var(--accent);padding:30px 32px;background:var(--card)}
+  .note-box h3{font-size:30px;margin-bottom:12px}
+  .note-box p{margin:0;color:var(--muted);font-size:17px;max-width:760px}
+  .note-box p strong{color:var(--ink)}
+  @media(max-width:900px){
+    .trades{grid-template-columns:1fr}
+    .trade{border-left:0;border-top:1px solid var(--line)}
+    .trade:first-child{border-top:0}
+  }
   /* offer */
   .offer-card{display:grid;grid-template-columns:.9fr 1.1fr;border:1px solid var(--line);margin-top:50px}
   .offer-left{background:var(--accent);color:#fff;padding:52px 46px}
@@ -186,12 +204,12 @@
   <div class="wrap">
     <div class="secnum">Never Miss Calls</div>
     <h1>Never miss<br>another <span>call.</span></h1>
-    <p class="sub">Every missed call is a <strong>$300+ job</strong> going to the next company on Google. When you can't pick up, we text back in seconds, qualify the job, and book it — before they call your competitor.</p>
+    <p class="sub">Every missed call is a <strong>$300+ job</strong> — or a full chair, a full bay, a full day of bookings — going to the next shop on Google. When you can't pick up, we text back in seconds, qualify the job, and book it — before they call your competitor.</p>
     <div class="actions">
       <a class="btn btn-primary" href="#how">See how it works ↓</a>
       <a class="btn btn-ghost" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a 15-minute call</a>
     </div>
-    <p class="micro">PLUMBERS · HVAC · ROOFERS · ELECTRICIANS · HIGH-VALUE LOCAL SERVICES</p>
+    <p class="micro">PLUMBERS · HVAC · ROOFERS · ELECTRICIANS · BARBER SHOPS · SALONS · AUTO REPAIR · LOCAL SERVICES THAT LIVE ON BOOKINGS</p>
   </div>
 </header>
 
@@ -284,9 +302,29 @@
   </div>
 </section>
 
+<section id="trades">
+  <div class="wrap">
+    <div class="secnum">03 — Who we help</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:860px">If your phone rings, <span style="color:var(--accent)">this is for you.</span></h2>
+    <p style="color:var(--muted);font-size:21px;max-width:660px;margin:26px 0 0">Different trades, same problem: you are busy doing the work, so the phone goes unanswered — and the customer books with the next shop.</p>
+    <div class="trades">
+      <div class="trade"><div class="n">Trade 01</div><h3>HVAC</h3><p>No heat, no AC — customers call 3 companies and book the first one that answers. Nights and weekends are your busiest missed calls.</p><p class="money">One saved job: $300–$800</p></div>
+      <div class="trade"><div class="n">Trade 02</div><h3>Plumbers</h3><p>A burst pipe does not wait for a callback. When you are under a sink, the text-back holds the customer until you are booked in.</p><p class="money">One saved job: $350–$1,200</p></div>
+      <div class="trade"><div class="n">Trade 03</div><h3>Roofers</h3><p>After a storm, every roofer gets the same flood of calls. The shop that replies first in seconds wins the inspection.</p><p class="money">One saved job: $450–$2,100</p></div>
+      <div class="trade"><div class="n">Trade 04</div><h3>Electricians</h3><p>Power out, breaker tripping, urgent and scared customers. They do not leave voicemails — they call the next electrician.</p><p class="money">One saved job: $300–$900</p></div>
+      <div class="trade"><div class="n">Trade 05</div><h3>Barber shops &amp; salons</h3><p>Your hands are in someone's hair — you cannot touch the phone. The text-back books the chair, picks the barber, and sends a reminder so the chair does not sit empty from a no-show.</p><p class="money">One saved booking: $35 today — $400+ a year in repeat visits</p></div>
+      <div class="trade"><div class="n">Trade 06</div><h3>Auto repair</h3><p>Hands under the hood, phone in the office. Missed calls are missed cars — and the driver just books the next garage on Google.</p><p class="money">One saved job: $250–$900</p></div>
+    </div>
+    <div class="note-box">
+      <h3>Barber shops &amp; salons — the honest math</h3>
+      <p>A haircut is <strong>$35, not $350</strong>. We know that. Your money is in <strong>volume and repeats</strong>: a client we save today comes back every 3–4 weeks, all year. Miss 5 bookings a week and that is not $175 lost — it is 5 regulars your competitor now owns. Add reminders that cut no-shows, and your chairs stay full.</p>
+    </div>
+  </div>
+</section>
+
 <section id="how">
   <div class="wrap">
-    <div class="secnum">03 — How it works</div>
+    <div class="secnum">04 — How it works</div>
     <h2 style="font-size:clamp(48px,6vw,84px)">Four parts. Nothing to manage.</h2>
     <div class="steps">
       <div class="step"><div class="n">01</div><h3>Instant text-back</h3><p>The second a call is missed, the customer gets a text. Seconds — not hours, not "we'll get back to you Monday."</p></div>
@@ -299,7 +337,7 @@
 
 <section>
   <div class="wrap">
-    <div class="secnum">04 — The offer</div>
+    <div class="secnum">05 — The offer</div>
     <h2 style="font-size:clamp(48px,6vw,84px);max-width:800px">Prove it on your own missed calls first.</h2>
     <div class="offer-card">
       <div class="offer-left">
@@ -328,13 +366,15 @@
 
 <section class="faq">
   <div class="wrap">
-    <div class="secnum">05 — Straight answers</div>
+    <div class="secnum">06 — Straight answers</div>
     <h2>Objections, handled.</h2>
     <details><summary>Do we need to change our phone number?</summary><p>No. The workflow sits behind your existing business number and responds when a call is missed.</p></details>
     <details><summary>Will it sound like a robot?</summary><p>No. It texts like a dispatcher — short, natural, and focused on the job. Customers generally don't realize it's automated until they're booked.</p></details>
     <details><summary>Is this a voice bot?</summary><p>No. The starting offer is missed-call text-back and booking — deliberately simpler and less intrusive than making every caller talk to a robot.</p></details>
     <details><summary>Can a customer reach a real person?</summary><p>Yes. Your team can take over any conversation, and urgent or complex jobs route straight to a human on your rules.</p></details>
     <details><summary>Will it promise times we can't honor?</summary><p>No. Availability and booking rules are defined with you. It offers approved windows, requests a callback, or hands off — never invents.</p></details>
+    <details><summary>We are a barber shop / salon, not a big home-service company. Is this for us?</summary><p>Yes — if you live on bookings. The system books the chair with the right barber or stylist, and sends reminders that cut no-shows. Your ticket is smaller, so for appointment shops the pilot is built around filling chairs and keeping regulars, not one big job.</p></details>
+    <details><summary>What about other local businesses?</summary><p>If customers call to book and a missed call means they go elsewhere — auto repair, clinics, cleaning, landscaping — the same system fits. The questions and booking rules are built for your trade.</p></details>
   </div>
 </section>
 
