@@ -400,7 +400,7 @@
 
       <div class="intro">
         <h1>A customer calls. Nobody picks up.<br /><span class="hl">Watch the job get saved anyway.</span></h1>
-        <p>Crews miss calls because they're on a roof, under a sink, or driving between jobs — and most callers never ring twice. This is the live demo of the agent that texts back in seconds, qualifies the job, and books it. <strong>You're the customer:</strong> tap the replies on the phone to drive the conversation.</p>
+        <p>Crews miss calls because they're on a roof, under a sink, driving between jobs — or they have a client in the chair and can't touch the phone — and most callers never ring twice. This is the live demo of the agent that texts back in seconds, qualifies the job, and books it. <strong>You're the customer:</strong> pick your trade above, tap the replies on the phone to drive the conversation.</p>
       </div>
 
       <!-- Controls -->
@@ -411,6 +411,8 @@
             <button class="trade-chip on" data-trade="plumbing" type="button">Plumbing</button>
             <button class="trade-chip" data-trade="hvac" type="button">HVAC</button>
             <button class="trade-chip" data-trade="roofing" type="button">Roofing</button>
+            <button class="trade-chip" data-trade="electrical" type="button">Electrical</button>
+            <button class="trade-chip" data-trade="barber" type="button">Barber Shop</button>
           </div>
         </div>
         <div class="ctl" style="flex:1 1 230px; max-width:320px;">
@@ -708,6 +710,66 @@
           jobValue: 780,
           jobLabel: "Roof repair · average ticket $780",
           jobShort: "Roof repair"
+        },
+        electrical: {
+          business: "BrightSpark Electric",
+          initial: "B",
+          problem: "Half the house has lost power and the breaker keeps tripping",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, our electricians are out on jobs. What's happening at your place?";
+          },
+          hours: "We run emergency callouts 24/7, with office hours Mon–Sat, 8am–6pm. Is this something you need looked at today?",
+          hoursBye: "No problem at all. Save this number — if anything electrical comes up, a text here is the fastest way to reach us.",
+          urgencyQ: "Let's get that checked safely. Can you smell burning, or see any sparks or scorch marks near the panel or outlets?",
+          urgencyOpts: ["Yes — burning smell", "No smell, just no power in half the house"],
+          urgencyReply: [
+            "That's urgent — please stay away from the panel and don't reset the breaker again. I'll line up our first available electrician for today.",
+            "Good — that lowers the risk. I'll still get an electrician out today so a small fault doesn't turn into a bigger one."
+          ],
+          identityAsk: "Can I take your name and the address for the visit?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here's what I can offer — which suits you?";
+          },
+          visitFee: 79,
+          confirmMsg: function (slot) {
+            return "You're booked for " + slot + ". You'll get a text when the electrician is on his way, and a reminder an hour before. The visit fee is $79 — waived completely if you go ahead with the repair.";
+          },
+          costQ: "How much might the repair cost?",
+          cost: "Fair question. Most fault-finding and repair jobs land between $300–$700 depending on the cause. The electrician confirms the exact price on site before any work starts, so there are no surprises.",
+          jobValue: 420,
+          jobLabel: "Electrical repair · average ticket $420",
+          jobShort: "Electrical repair"
+        },
+        barber: {
+          business: "Sharp Line Barbers",
+          initial: "S",
+          problem: "Hey, can I get a haircut today? Every time I call it just rings out",
+          greeting: function (biz) {
+            return "Hi, this is " + biz + " — sorry we missed your call, all our barbers have clients in the chair. Want me to book you in?";
+          },
+          hours: "We're open Mon–Sat, 9am–8pm, walk-ins when a chair is free. Were you hoping to come in today?",
+          hoursBye: "No problem at all. Save this number — next time you need a cut, just text us here and we'll book you straight in.",
+          urgencyQ: "Got it. Is this for a special occasion, or just a regular tidy-up?",
+          urgencyOpts: ["Event tonight — need to look sharp", "Just a regular cut this week"],
+          urgencyReply: [
+            "Then let's not risk a walk-in wait. I'll hold you a chair with our first available barber today.",
+            "Perfect — I'll book you a proper slot so you're in the chair on time, no waiting around."
+          ],
+          bookedLabel: "Chair booked",
+          sampleIdentity: "James Carter, first available is fine",
+          identityAsk: "Can I take your name, and who do you usually get your cut with — or first available?",
+          slotIntro: function (name) {
+            return "Thanks, " + name + ". Here are the chairs I have open — which suits you?";
+          },
+          visitFee: 0,
+          confirmMsg: function (slot) {
+            return "You're booked for " + slot + ". You'll get a reminder an hour before so you don't forget — just pay at the shop after your cut. Running late? Reply here and we'll try to hold your chair.";
+          },
+          costQ: "How much is a haircut?",
+          cost: "A standard cut is $35, skin fade $40, cut + beard trim is $50. You pay at the shop — nothing to pay now to book your chair.",
+          jobValue: 35,
+          jobLabel: "Haircut · $35 today, $400+ a year as a regular",
+          jobShort: "Haircut booking"
         }
       };
 
@@ -984,13 +1046,13 @@
         addMsg("cust", t.urgencyOpts[i]);
         S.stage = "identity";
         logEvent("ai", i === 0
-          ? "<b>Flagged urgent.</b> Agent gave an immediate damage-control step, then moved to booking."
-          : "<b>Qualified:</b> not an emergency, but still booked for today before it becomes one.");
+          ? "<b>Flagged as priority.</b> Agent responded to the urgency, then moved straight to booking."
+          : "<b>Qualified:</b> not an emergency, but still booked for today before someone else takes the slot.");
         agentSay(t.urgencyReply[i], function () {
           agentSay(t.identityAsk, function () {
-            setComposer(true, "Type name & address, then send…");
+            setComposer(true, "Type your details, then send…");
             setChips([
-              { label: "Use sample: " + QUICK_IDENTITY, sample: true, action: function () { submitIdentity(QUICK_IDENTITY); } }
+              { label: "Use sample: " + (t.sampleIdentity || QUICK_IDENTITY), sample: true, action: function () { submitIdentity(t.sampleIdentity || QUICK_IDENTITY); } }
             ], "Or tap to fill it in");
           });
         });
@@ -1008,7 +1070,7 @@
         var first = S.name.split(/\s+/)[0] || "there";
         S.firstName = first.charAt(0).toUpperCase() + first.slice(1);
         S.stage = "slot";
-        logEvent("ai", "<b>Lead captured:</b> " + esc(S.name) + " — name and address collected, ready to book.");
+        logEvent("ai", "<b>Lead captured:</b> " + esc(S.name) + " — name and details collected, ready to book.");
         agentSay(t.slotIntro(S.firstName), function () {
           setChips(SLOTS.map(function (s) {
             return { label: s, action: function () { chooseSlot(s); } };
@@ -1063,7 +1125,7 @@
 
       function showBookedBanner() {
         var t = TRADES[S.trade];
-        $("bookedTitle").textContent = "Job booked — " + money(t.jobValue) + " on the board";
+        $("bookedTitle").textContent = (t.bookedLabel || "Job booked") + " — " + money(t.jobValue) + " on the board";
         $("bookedDetail").textContent = t.jobShort + " · " + S.slot + " · " + S.name + ". Confirmation text sent, owner alerted, reminder scheduled.";
         $("bookedBanner").classList.add("show");
       }
