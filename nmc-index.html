@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVK4YRMFZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4LVK4YRMFZ');
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Never Miss Calls — Missed calls turned into booked jobs</title>
+<link rel="canonical" href="https://nevermissacalls.com/" />
+<meta name="description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, electricians, barber shops, salons, auto repair, and other local teams that live on bookings. Start free: playable demo + free missed-call audit, then a $500 founding pilot." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Never Miss Calls — Missed calls turned into booked jobs" />
+<meta property="og:description" content="Missed-call text-back and booking for plumbers, HVAC, roofers, electricians, barber shops, salons, auto repair, and other local teams that live on bookings." />
+<meta property="og:url" content="https://nevermissacalls.com/" />
+<meta property="og:image" content="https://nevermissacalls.com/og-cover.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e13; --bg2:#10151d; --card:#141a24; --line:#232c3a;
+    --ink:#f4f6f8; --muted:#9aa6b4; --accent:#f05a28; --accent-deep:#c74315;
+    --lime:#bfe25f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;font-size:18px;line-height:1.6}
+  h1,h2,h3{font-family:"Barlow Condensed",sans-serif;line-height:.95;margin:0;letter-spacing:-.02em;text-transform:uppercase}
+  .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+  .topline{height:6px;background:var(--accent)}
+  .secnum{font:700 14px "Barlow Condensed",sans-serif;letter-spacing:.28em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+  section{padding:96px 0;border-top:1px solid var(--line)}
+  /* hero */
+  .hero{padding:110px 0 100px;border-top:0;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;width:520px;height:520px;border:60px solid rgba(240,90,40,.06);border-radius:50%;right:-220px;top:-180px}
+  .hero h1{font-size:clamp(64px,9vw,132px);max-width:900px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{font-size:22px;color:var(--muted);max-width:640px;margin:28px 0 36px}
+  .hero .sub strong{color:var(--ink)}
+  .actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 28px;text-decoration:none;font-weight:700;border:2px solid var(--ink);color:var(--ink);font-size:17px}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .micro{margin-top:16px;color:var(--muted);font-size:14px;letter-spacing:.04em}
+  /* math */
+  .math-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:48px 0 30px;border:1px solid var(--line)}
+  .math-cell{padding:38px 32px;border-left:1px solid var(--line)}
+  .math-cell:first-child{border-left:0}
+  .math-cell .k{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:12px}
+  .math-cell .v{font:800 52px/1 "Barlow Condensed",sans-serif}
+  .math-cell.total{background:var(--accent);border-left:0}
+  .math-cell.total .k{color:#ffd9c7}
+  .math-cell.total .v{color:#fff}
+  .fineprint{color:var(--muted);font-size:15px;max-width:640px}
+  /* answer */
+  .answer h2{font-size:clamp(48px,6vw,84px);max-width:800px}
+  .answer h2 span{color:var(--accent)}
+  .answer p{color:var(--muted);font-size:21px;max-width:660px;margin:26px 0 0}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:50px;border:1px solid var(--line)}
+  .step{padding:34px 28px;border-left:1px solid var(--line)}
+  .step:first-child{border-left:0}
+  .step .n{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
+  .step h3{font-size:30px;margin-bottom:12px}
+  .step p{margin:0;color:var(--muted);font-size:16px}
+  /* trades */
+  .trades{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:50px;border:1px solid var(--line)}
+  .trade{padding:34px 28px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+  .trade:nth-child(-n+3){border-top:0}
+  .trade:nth-child(3n+1){border-left:0}
+  .trade .n{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
+  .trade h3{font-size:30px;margin-bottom:12px}
+  .trade p{margin:0;color:var(--muted);font-size:16px}
+  .trade .money{margin-top:14px;color:var(--ink);font-weight:700;font-size:15px}
+  .note-box{margin-top:34px;border:1px solid var(--accent);padding:30px 32px;background:var(--card)}
+  .note-box h3{font-size:30px;margin-bottom:12px}
+  .note-box p{margin:0;color:var(--muted);font-size:17px;max-width:760px}
+  .note-box p strong{color:var(--ink)}
+  @media(max-width:900px){
+    .trades{grid-template-columns:1fr}
+    .trade{border-left:0;border-top:1px solid var(--line)}
+    .trade:first-child{border-top:0}
+  }
+  /* funnel + ladder + proof + trust */
+  .steps-3{grid-template-columns:repeat(3,1fr)}
+  .step .price-tag{font:800 34px/1 "Barlow Condensed",sans-serif;color:var(--lime);margin-bottom:10px}
+  .ladder{margin-top:34px;border:1px solid var(--line)}
+  .ladder-row{display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:22px 28px;border-top:1px solid var(--line);background:var(--card)}
+  .ladder-row:first-child{border-top:0}
+  .ladder-row .lt{font-weight:700;font-size:19px}
+  .ladder-row .ld{color:var(--muted);font-size:15px;max-width:640px}
+  .ladder-row .lp{font:800 38px/1 "Barlow Condensed",sans-serif;color:var(--ink);white-space:nowrap}
+  .ladder-row .lp small{font-size:16px;color:var(--muted);font-family:Inter,sans-serif;font-weight:600}
+  .checklist{margin-top:34px;border:1px solid var(--line);padding:30px 32px;background:var(--card)}
+  .checklist h3{font-size:30px;margin-bottom:16px}
+  .checklist ul{list-style:none;padding:0;margin:0}
+  .checklist li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;color:var(--muted);font-size:16px}
+  .checklist li:last-child{border-bottom:0}
+  .checklist li:before{content:"✓";color:var(--lime);font-weight:800}
+  .checklist li strong{color:var(--ink)}
+  .samples{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:50px;border:1px solid var(--line)}
+  .sample{padding:28px 26px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+  .sample:nth-child(-n+3){border-top:0}
+  .sample:nth-child(3n+1){border-left:0}
+  .sample .tag{display:inline-block;font:700 11px "Barlow Condensed",sans-serif;letter-spacing:.18em;color:#ffd9c7;background:var(--accent);padding:4px 8px;margin-bottom:14px}
+  .sample h3{font-size:26px;margin-bottom:14px}
+  .sample .bubble{border:1px solid var(--line);background:var(--bg2);padding:10px 12px;font-size:14px;color:var(--muted);margin-bottom:8px}
+  .sample .bubble b{color:var(--ink)}
+  .sample .result{margin-top:12px;font-weight:700;color:var(--lime);font-size:15px}
+  .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:50px;border:1px solid var(--line)}
+  .trust-cell{padding:34px 30px;border-left:1px solid var(--line)}
+  .trust-cell:first-child{border-left:0}
+  .trust-cell:nth-child(n+3){border-top:1px solid var(--line)}
+  .trust-cell:nth-child(3){border-left:0}
+  @media(max-width:900px){.trust-cell:nth-child(n+3){border-top:0}}
+  .trust-cell h3{font-size:28px;margin-bottom:12px}
+  .trust-cell p{margin:0;color:var(--muted);font-size:16px}
+  .founder{display:flex;gap:20px;align-items:center}
+  .monogram{width:84px;height:84px;flex:0 0 84px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font:800 30px "Barlow Condensed",sans-serif;letter-spacing:.06em}
+  @media(max-width:900px){
+    .steps-3,.samples,.trust-grid{grid-template-columns:1fr}
+    .sample,.trust-cell{border-left:0;border-top:1px solid var(--line)}
+    .sample:first-child,.trust-cell:first-child{border-top:0}
+    .ladder-row{grid-template-columns:1fr}
+  }
+  /* offer */
+  .offer-card{display:grid;grid-template-columns:.9fr 1.1fr;border:1px solid var(--line);margin-top:50px}
+  .offer-left{background:var(--accent);color:#fff;padding:52px 46px}
+  .offer-left .small{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#ffd9c7}
+  .offer-left .price{font:800 clamp(72px,8vw,110px)/1 "Barlow Condensed",sans-serif;margin:14px 0 18px}
+  .offer-left p{margin:0;color:#ffe9dd}
+  .offer-left .guarantee{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.3);font-weight:600}
+  .offer-right{padding:52px 46px;background:var(--card)}
+  .offer-right h2{font-size:48px;margin-bottom:24px}
+  .offer-points{list-style:none;padding:0;margin:0 0 34px}
+  .offer-points li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}
+  .offer-points li:before{content:"✓";color:var(--lime);font-weight:800}
+  /* faq */
+  details{border-top:1px solid var(--line);padding:22px 0}
+  details:last-child{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;font-weight:700;font-size:20px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";font:700 30px/1 "Barlow Condensed",sans-serif;color:var(--accent)}
+  details[open] summary:after{content:"−"}
+  details p{color:var(--muted);margin:14px 40px 0 0}
+  .faq h2{font-size:clamp(48px,6vw,76px);margin-bottom:40px}
+  /* closing */
+  .closing{text-align:center;background:var(--accent);border-top:0}
+  .closing h2{font-size:clamp(52px,7vw,92px);max-width:860px;margin:0 auto 26px;color:#fff}
+  .closing p{color:#ffe3d6;max-width:600px;margin:0 auto 34px;font-size:20px}
+  .closing .btn{background:#fff;border-color:#fff;color:#a32e08}
+  .closing .btn:hover{background:var(--bg);border-color:var(--bg);color:#fff}
+  footer{padding:28px 0;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:900px){
+    .math-grid,.steps,.offer-card{grid-template-columns:1fr}
+    .math-cell,.step{border-left:0;border-top:1px solid var(--line)}
+    .math-cell:first-child,.step:first-child{border-top:0}
+    section{padding:72px 0}.hero{padding:80px 0 70px}
+    .offer-left,.offer-right{padding:36px 26px}
+  }
+
+  /* invoice stack — after revline's invoice section */
+  .stack-section{position:relative;height:430vh;padding:0;border-top:1px solid var(--line);
+    background:radial-gradient(55% 45% at 72% 42%, rgba(240,90,40,.07), transparent 70%), #0c0c0e}
+  .stack-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .stack-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center}
+  .secnum-n{color:var(--accent)}
+  .secnum-t{letter-spacing:.28em}
+  .serif-head{font-family:"Playfair Display",Georgia,serif;font-weight:600;text-transform:none;letter-spacing:0;
+    font-size:clamp(56px,6.4vw,92px);line-height:1.02}
+  .stack-sub{color:var(--muted);font-size:20px;max-width:430px;margin:26px 0 38px}
+  .stack-total .k{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:10px}
+  .serif-num{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(64px,7vw,96px);line-height:1;color:var(--ink)}
+  .serif-num.pop{animation:totalpop .3s}
+  @keyframes totalpop{40%{transform:scale(1.06)}}
+  .stack-total .per{color:var(--muted);font-size:16px;margin-top:10px}
+  .stack-stage{position:relative;height:660px}
+  .invoice{position:absolute;left:0;top:0;width:min(380px,100%);--paper:#f5f0e2;
+    background:linear-gradient(180deg,#f7f2e6,#f0e9d6);color:#191914;
+    padding:30px 30px 26px;opacity:0;transform:translateX(140px) rotate(18deg);
+    transition:opacity .5s ease,transform .5s ease;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+  .invoice::before{content:"";position:absolute;top:-7px;left:0;right:0;height:14px;
+    background-image:radial-gradient(circle 7px at 7px 7px, var(--paper) 7px, transparent 7.5px);
+    background-size:15px 14px;background-repeat:repeat-x;background-position:0 0}
+  .invoice.show{opacity:1;transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}
+  .invoice:nth-child(1){--dx:-24px;--dy:0px;--rot:-13deg;z-index:1}
+  .invoice:nth-child(2){--dx:-2px;--dy:26px;--rot:-6deg;z-index:2}
+  .invoice:nth-child(3){--dx:20px;--dy:52px;--rot:1deg;z-index:3}
+  .invoice:nth-child(4){--dx:40px;--dy:78px;--rot:8deg;z-index:4}
+  .invoice:nth-child(5){--dx:58px;--dy:104px;--rot:15deg;z-index:5}
+  .stamp{position:absolute;top:20px;right:22px;border:2px solid #d43a2f;color:#d43a2f;
+    font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;text-transform:uppercase;
+    padding:7px 10px 6px;border-radius:4px;transform:rotate(9deg);background:rgba(212,58,47,.05)}
+  .inv-head{display:flex;justify-content:space-between;align-items:baseline;padding-right:76px}
+  .inv-label{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.22em;text-transform:uppercase;color:#6d675a}
+  .inv-no{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:#6d675a}
+  .inv-name{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:34px;margin:12px 0 4px;letter-spacing:0}
+  .inv-sep{border-top:1px dashed #a89f88;margin:16px 0}
+  .inv-row{display:flex;justify-content:space-between;gap:14px;font:500 14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#4a4536;margin:7px 0}
+  .inv-row span:last-child{text-align:right}
+  .inv-cost{display:flex;justify-content:space-between;align-items:baseline}
+  .inv-big{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:56px}
+  .inv-report{margin-top:2px}
+  .inv-report .inv-label{display:block;margin-bottom:8px}
+  .scribble{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:600;font-size:27px;
+    position:relative;display:inline-block;transform:rotate(-2deg);color:#2a251c}
+  .scribble::after{content:"";position:absolute;left:-14px;right:-14px;top:-9px;bottom:-9px;
+    border:3px solid #d43a2f;border-radius:50%;transform:rotate(-4deg)}
+  @media(max-width:900px){
+    .stack-section{height:auto}
+    .stack-pin{position:static;height:auto;display:block;padding:72px 0}
+    .stack-grid{grid-template-columns:1fr;gap:36px}
+    .stack-stage{height:auto}
+    .invoice,.invoice.show{position:relative;left:auto;top:auto;opacity:1;transform:none;margin:0 0 18px;width:100%}
+  }
+
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,14,19,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+  .logo{font:800 22px/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;text-decoration:none;color:var(--ink)}
+  .logo span{color:var(--accent)}
+  .btn-small{min-height:44px;padding:0 20px;font-size:15px}
+  .hero{padding-top:170px}
+  @media(max-width:900px){.hero{padding-top:140px}.logo{font-size:19px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="topline"></div>
+  <div class="wrap header-inner">
+    <a class="logo" href="/">NEVER MISS <span>CALLS</span></a>
+    <a class="btn btn-primary btn-small" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a call</a>
+  </div>
+</header>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="secnum">Never Miss Calls</div>
+    <h1>Never miss<br>another <span>call.</span></h1>
+    <p class="sub">Every missed call is a <strong>$300+ job</strong> — or a full chair, a full bay, a full day of bookings — going to the next shop on Google. When you can't pick up, we text back in seconds, qualify the job, and book it — before they call your competitor.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/demo/">Play the free demo — 2 minutes</a>
+      <a class="btn btn-ghost" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a free audit call</a>
+    </div>
+    <p class="micro">START FREE: PLAY THE DEMO → FREE MISSED-CALL AUDIT → ONLY THEN, THE $500 PILOT · NO CARD TO START</p>
+  </div>
+</header>
+
+<section class="stack-section" id="missedWeek">
+  <div class="stack-pin">
+    <div class="wrap stack-grid">
+      <div class="stack-left">
+        <div class="secnum"><span class="secnum-n">01</span><span class="secnum-t">One week, five missed calls</span></div>
+        <h2 class="serif-head">Most shops<br>lose 5 jobs<br>a week.</h2>
+        <p class="stack-sub">Water heaters, burst pipes, dead furnaces. Every one of them called the next company.</p>
+        <div class="stack-total">
+          <div class="k">Lost this week</div>
+          <div class="v serif-num" id="stackTotal">$0</div>
+          <div class="per">≈ $20,000 every month.</div>
+          <div class="per" style="opacity:.75;font-size:.85em;margin-top:6px">Illustrative example with typical job values — your call volume and job sizes will differ.</div>
+        </div>
+      </div>
+      <div class="stack-right">
+        <div class="stack-stage">
+          <div class="job-card invoice" data-price="850">
+            <span class="stamp">Lost</span>
+            <div class="inv-head"><span class="inv-label">Missed call</span><span class="inv-no">No. 0311</span></div>
+            <div class="inv-name">Water heater install</div>
+            <div class="inv-sep"></div>
+            <div class="inv-row"><span>Missed</span><span>Tue 7:42 PM</span></div>
+            <div class="inv-row"><span>Went to</span><span>Next plumber on Google</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-cost"><span class="inv-label">Cost</span><span class="inv-big">$850</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-report"><span class="inv-label">What you got</span><span class="scribble">Nothing.</span></div>
+          </div>
+          <div class="job-card invoice" data-price="320">
+            <span class="stamp">Lost</span>
+            <div class="inv-head"><span class="inv-label">Missed call</span><span class="inv-no">No. 0344</span></div>
+            <div class="inv-name">AC not cooling</div>
+            <div class="inv-sep"></div>
+            <div class="inv-row"><span>Missed</span><span>Wed 1:15 PM</span></div>
+            <div class="inv-row"><span>Went to</span><span>Whoever picked up</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-cost"><span class="inv-label">Cost</span><span class="inv-big">$320</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-report"><span class="inv-label">What you got</span><span class="scribble">Nothing.</span></div>
+          </div>
+          <div class="job-card invoice" data-price="1200">
+            <span class="stamp">Lost</span>
+            <div class="inv-head"><span class="inv-label">Missed call</span><span class="inv-no">No. 0378</span></div>
+            <div class="inv-name">Burst pipe — emergency</div>
+            <div class="inv-sep"></div>
+            <div class="inv-row"><span>Missed</span><span>Thu 9:03 AM</span></div>
+            <div class="inv-row"><span>Went to</span><span>Fastest callback</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-cost"><span class="inv-label">Cost</span><span class="inv-big">$1,200</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-report"><span class="inv-label">What you got</span><span class="scribble">Nothing.</span></div>
+          </div>
+          <div class="job-card invoice" data-price="540">
+            <span class="stamp">Lost</span>
+            <div class="inv-head"><span class="inv-label">Missed call</span><span class="inv-no">No. 0402</span></div>
+            <div class="inv-name">Furnace, no heat</div>
+            <div class="inv-sep"></div>
+            <div class="inv-row"><span>Missed</span><span>Fri 6:27 PM</span></div>
+            <div class="inv-row"><span>Went to</span><span>Competitor’s night line</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-cost"><span class="inv-label">Cost</span><span class="inv-big">$540</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-report"><span class="inv-label">What you got</span><span class="scribble">Nothing.</span></div>
+          </div>
+          <div class="job-card invoice" data-price="2100">
+            <span class="stamp">Lost</span>
+            <div class="inv-head"><span class="inv-label">Missed call</span><span class="inv-no">No. 0436</span></div>
+            <div class="inv-name">Roof leak</div>
+            <div class="inv-sep"></div>
+            <div class="inv-row"><span>Missed</span><span>Sat 11:48 AM</span></div>
+            <div class="inv-row"><span>Went to</span><span>First callback</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-cost"><span class="inv-label">Cost</span><span class="inv-big">$2,100</span></div>
+            <div class="inv-sep"></div>
+            <div class="inv-report"><span class="inv-label">What you got</span><span class="scribble">Nothing.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="answer">
+  <div class="wrap">
+    <div class="secnum">02 — The answer</div>
+    <h2>One system.<br><span>Zero missed calls.</span></h2>
+    <p>The moment a call goes unanswered, an AI assistant texts the caller back, has the conversation, qualifies the job, and books it into your calendar. You just show up and do the work.</p>
+  </div>
+</section>
+
+<section id="trades">
+  <div class="wrap">
+    <div class="secnum">03 — Who we help</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:860px">If your phone rings, <span style="color:var(--accent)">this is for you.</span></h2>
+    <p style="color:var(--muted);font-size:21px;max-width:660px;margin:26px 0 0">Different trades, same problem: you are busy doing the work, so the phone goes unanswered — and the customer books with the next shop.</p>
+    <div class="trades">
+      <div class="trade"><div class="n">Trade 01</div><h3>HVAC</h3><p>No heat, no AC — customers call 3 companies and book the first one that answers. Nights and weekends are your busiest missed calls.</p><p class="money">One saved job: $300–$800</p></div>
+      <div class="trade"><div class="n">Trade 02</div><h3>Plumbers</h3><p>A burst pipe does not wait for a callback. When you are under a sink, the text-back holds the customer until you are booked in.</p><p class="money">One saved job: $350–$1,200</p></div>
+      <div class="trade"><div class="n">Trade 03</div><h3>Roofers</h3><p>After a storm, every roofer gets the same flood of calls. The shop that replies first in seconds wins the inspection.</p><p class="money">One saved job: $450–$2,100</p></div>
+      <div class="trade"><div class="n">Trade 04</div><h3>Electricians</h3><p>Power out, breaker tripping, urgent and scared customers. They do not leave voicemails — they call the next electrician.</p><p class="money">One saved job: $300–$900</p></div>
+      <div class="trade"><div class="n">Trade 05</div><h3>Barber shops &amp; salons</h3><p>Your hands are in someone's hair — you cannot touch the phone. The text-back books the chair, picks the barber, and sends a reminder so the chair does not sit empty from a no-show.</p><p class="money">One saved booking: $35 today — $400+ a year in repeat visits</p></div>
+      <div class="trade"><div class="n">Trade 06</div><h3>Auto repair</h3><p>Hands under the hood, phone in the office. Missed calls are missed cars — and the driver just books the next garage on Google.</p><p class="money">One saved job: $250–$900</p></div>
+      <div class="trade"><div class="n">Trade 07</div><h3>Dentists &amp; clinics</h3><p>Your front desk is with a patient, so new-patient calls ring out — and a patient who cannot get through books the first clinic that replies. The text-back books the appointment and sends the reminder. It never asks for medical details by text — just a name, the kind of appointment, and a time.</p><p class="money">One saved patient: $180 first visit — $1,000+ over the years</p></div>
+      <div class="trade"><div class="n">Trade 08</div><h3>Restaurants &amp; cafés</h3><p>At 7pm your whole team is on the floor — nobody can take a booking call. The text-back takes the reservation right there: name, party size, time — plus takeout and catering questions answered your way.</p><p class="money">One saved table: $90–$150 tonight — catering orders run $500+</p></div>
+    </div>
+    <div class="note-box">
+      <h3>Barber shops &amp; salons — the honest math</h3>
+      <p>A haircut is <strong>$35, not $350</strong>. We know that. Your money is in <strong>volume and repeats</strong>: a client we save today comes back every 3–4 weeks, all year. Miss 5 bookings a week and that is not $175 lost — it is 5 regulars your competitor now owns. Add reminders that cut no-shows, and your chairs stay full.</p>
+    </div>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <div class="secnum">04 — Start free</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:860px">Three steps.<br><span style="color:var(--accent)">Two of them are free.</span></h2>
+    <p style="color:var(--muted);font-size:21px;max-width:660px;margin:26px 0 0">Every big company in this business lets you start for $0. So do we. You pay only when you have seen it work and seen your own numbers.</p>
+    <div class="steps steps-3">
+      <div class="step"><div class="n">Step 1 — Free</div><div class="price-tag">$0</div><h3>Play the demo</h3><p>Pick your trade — plumbing, HVAC, roofing, electrical, barber shop, dentist, restaurant — and play a real missed-call booking yourself. Two minutes, on your phone or computer. No signup, no sales call.</p><p style="margin-top:14px"><a class="btn btn-primary" href="/demo/">Play the demo</a></p></div>
+      <div class="step"><div class="n">Step 2 — Free</div><div class="price-tag">$0</div><h3>Free missed-call audit</h3><p>A 15-minute call. We count the calls you miss in a normal week and put a dollar number on what they cost you — in writing, yours to keep either way. No card, no pressure, no pitch if the number is small.</p><p style="margin-top:14px"><a class="btn btn-ghost" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book the free audit</a></p></div>
+      <div class="step"><div class="n">Step 3 — Only if it makes sense</div><div class="price-tag">$500</div><h3>The founding pilot</h3><p>Only if your audit shows real money leaking. We build the system for your shop, run it on your real missed calls for 30 days, and you decide from results — the $500 is credited in full if you continue.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="secnum">05 — How it works</div>
+    <h2 style="font-size:clamp(48px,6vw,84px)">Four parts. Nothing to manage.</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Instant text-back</h3><p>The second a call is missed, the customer gets a text. Seconds — not hours, not "we'll get back to you Monday."</p></div>
+      <div class="step"><div class="n">02</div><h3>Qualify the job</h3><p>Trade-specific questions: what's wrong, where, how urgent. Tire-kickers filtered before they ever reach you.</p></div>
+      <div class="step"><div class="n">03</div><h3>Book it</h3><p>Real availability, booked straight into your calendar. Or handed to you when you'd rather take it personally.</p></div>
+      <div class="step"><div class="n">04</div><h3>You stay in control</h3><p>Take over any conversation anytime. Your rules, your prices, your service area. Nothing books without your logic.</p></div>
+    </div>
+    <div class="checklist">
+      <h3>Live in 48 hours — the checklist</h3>
+      <ul>
+        <li><strong>Hour 0:</strong>&nbsp;15-minute setup call — your services, prices, service area, booking rules.</li>
+        <li><strong>Day 1:</strong>&nbsp;we build your flow and send test texts to your own phone, so you see exactly what your customers will see.</li>
+        <li><strong>Day 1:</strong>&nbsp;business-texting registration submitted for your number (if your carrier needs extra approval time, we tell you the exact live date on day 1 — no surprises).</li>
+        <li><strong>Day 2:</strong>&nbsp;go live on your real number + a short walkthrough of your booking report: every missed call, conversation, and booked job in one place.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="secnum">06 — The offer &amp; full prices</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:800px">Prove it on your own missed calls first.</h2>
+    <div class="offer-card">
+      <div class="offer-left">
+        <div class="small">Founding-client pilot</div>
+        <div class="price">$500</div>
+        <p>Start small, prove it on your own missed calls, then decide whether to expand. The pilot fee is credited toward a full build.</p>
+        <p class="guarantee"><strong>The guarantee, in writing:</strong> "Recovered" means at least one real job booked from a text-back conversation in your 30 pilot days, shown in your booking report. If that number is zero, we keep working free until the first one lands. This promise goes in your pilot agreement before you pay.</p>
+      </div>
+      <div class="offer-right">
+        <h2>What's inside the pilot</h2>
+        <ul class="offer-points">
+          <li>Conversation flow tailored to your trade</li>
+          <li>Service-area and urgency qualification</li>
+          <li>Booking or owner-handoff logic</li>
+          <li>One focused pilot workflow</li>
+          <li>Clear review before going fully live</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:saqibnaseer077@gmail.com?subject=I%27m%20interested%20in%20the%20%24500%20founding%20pilot">Ask about the pilot</a>
+          <a class="btn btn-ghost" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a call</a>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:34px;margin:44px 0 6px">Every price, on the page. Nothing hidden.</h3>
+    <p style="color:var(--muted);font-size:16px;max-width:680px;margin:0">Most agencies make you book a call to hear a price. Here is all of it — including what happens after the pilot, so there is no surprise later.</p>
+    <div class="ladder">
+      <div class="ladder-row"><div><div class="lt">Playable demo + missed-call audit</div><div class="ld">Steps 1 and 2 above. See it work, get your missed-call number in writing.</div></div><div class="lp">$0</div></div>
+      <div class="ladder-row"><div><div class="lt">Founding pilot — 30 days</div><div class="ld">The full system built for your shop, running on your real missed calls, with the written guarantee. Credited in full if you continue — you never pay this twice.</div></div><div class="lp">$500 <small>one-time</small></div></div>
+      <div class="ladder-row"><div><div class="lt">Full system — after the pilot</div><div class="ld">Missed-call text-back + website chat + booking + reminders + support. One saved plumbing or HVAC job usually covers the month.</div></div><div class="lp">$500<small>/month</small></div></div>
+      <div class="ladder-row"><div><div class="lt">Need a website too?</div><div class="ld">A mobile-first website built for calls, live in 7 days. Or take both together: website + AI setup for $1,250, then $500/month.</div></div><div class="lp">$1,000 <small>one-time</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="secnum">07 — See a booking happen</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:860px">Sample chats, <span style="color:var(--accent)">honestly labelled.</span></h2>
+    <p style="color:var(--muted);font-size:21px;max-width:700px;margin:26px 0 0">We are a new agency, so instead of borrowed testimonials, here is the real system working. These are <strong style="color:var(--ink)">sample conversations from our demo</strong> — play the full version yourself, as the customer, on the demo page.</p>
+    <div class="samples">
+      <div class="sample"><span class="tag">Sample chat</span><h3>Plumbing</h3><div class="bubble"><b>Customer:</b> My water heater is leaking all over the garage floor</div><div class="bubble"><b>Text-back (seconds later):</b> Sorry we missed your call — is water still actively leaking?</div><div class="bubble"><b>Customer:</b> Still leaking — getting worse</div><p class="result">Booked for today · water heater repair, $450 avg job</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>HVAC</h3><div class="bubble"><b>Customer:</b> Our AC stopped working, the house is up to 86 degrees</div><div class="bubble"><b>Text-back (seconds later):</b> Sorry you're dealing with that — is anyone at home who struggles with heat?</div><div class="bubble"><b>Customer:</b> Yes — my elderly mom is here</div><p class="result">Flagged priority · booked for today, $520 avg job</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>Roofing</h3><div class="bubble"><b>Customer:</b> After last night's storm, water is dripping through our ceiling</div><div class="bubble"><b>Text-back (seconds later):</b> Let's get it covered — is it actively dripping right now?</div><div class="bubble"><b>Customer:</b> Actively dripping</div><p class="result">Crew booked for today · roof repair, $780 avg job</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>Electrical</h3><div class="bubble"><b>Customer:</b> Half the house lost power and the breaker keeps tripping</div><div class="bubble"><b>Text-back (seconds later):</b> Let's check safely — any burning smell or sparks near the panel?</div><div class="bubble"><b>Customer:</b> No smell, just no power</div><p class="result">Electrician booked for today · $420 avg job</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>Barber shop</h3><div class="bubble"><b>Customer:</b> Can I get a haircut today? Every time I call it just rings out</div><div class="bubble"><b>Text-back (seconds later):</b> All our barbers have clients in the chair — want me to book you in?</div><div class="bubble"><b>Customer:</b> Yes — event tonight, need to look sharp</div><p class="result">Chair booked · $35 today, a regular for the year</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>Dental clinic</h3><div class="bubble"><b>Customer:</b> Hi, do you have any checkup appointments this week? I called twice, no answer</div><div class="bubble"><b>Text-back (seconds later):</b> Sorry we missed you — our front desk was with a patient. I can book you in here — is it a checkup and clean, or something specific?</div><div class="bubble"><b>Customer:</b> Just a checkup and clean</div><p class="result">Appointment booked · new patient, $180 first visit</p></div>
+      <div class="sample"><span class="tag">Sample chat</span><h3>Restaurant</h3><div class="bubble"><b>Customer:</b> Hi, can I book a table for 6 this Friday evening? Nobody picked up</div><div class="bubble"><b>Text-back (seconds later):</b> Sorry we missed your call — I can take that reservation right here. What time suits you?</div><div class="bubble"><b>Customer:</b> 7:30pm if you have it</div><p class="result">Table for 6 reserved · Friday 7:30pm, $140 avg table</p></div>
+      <div class="sample"><span class="tag">Sample report — demo data, not a client result</span><h3>Your weekly report looks like this</h3><div class="bubble"><b>Missed calls:</b> 5</div><div class="bubble"><b>Text conversations started:</b> 4</div><div class="bubble"><b>Jobs booked:</b> 2</div><p class="result">Sample recovered value: $970 in one week</p></div>
+    </div>
+    <p style="margin-top:26px"><a class="btn btn-primary" href="/demo/">Play these chats yourself on the demo</a></p>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="secnum">08 — Who you are dealing with</div>
+    <h2 style="font-size:clamp(48px,6vw,84px);max-width:860px">Small agency.<br><span style="color:var(--accent)">Straight answers.</span></h2>
+    <div class="trust-grid">
+      <div class="trust-cell"><div class="founder"><div class="monogram">SNK</div><div><h3 style="margin-bottom:6px">Saqib Naseer Khan</h3><p>Founder — he builds your system himself and answers support himself. No salesperson, no call center, no hand-offs.</p></div></div></div>
+      <div class="trust-cell"><h3>Support promise</h3><p>Support Monday–Saturday. You message one person and get a reply the same business day, usually within a few hours. A live-system emergency? Mark it URGENT and it jumps the queue.</p></div>
+      <div class="trust-cell"><h3>Your number stays yours</h3><p>The system sits behind your existing business number. If you ever leave, your number and your customer conversations go with you. Nothing is held hostage.</p></div>
+      <div class="trust-cell"><h3>What if he is offline?</h3><p>The system runs on its platform, not on a laptop — your text-backs keep firing and bookings keep landing even when he sleeps. Monitoring and alerts run around the clock.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="secnum">09 — Straight answers</div>
+    <h2>Objections, handled.</h2>
+    <details><summary>Do we need to change our phone number?</summary><p>No. The workflow sits behind your existing business number and responds when a call is missed.</p></details>
+    <details><summary>Will it sound like a robot?</summary><p>No. It texts like a dispatcher — short, natural, and focused on the job. Customers generally don't realize it's automated until they're booked.</p></details>
+    <details><summary>Is this a voice bot?</summary><p>No. The starting offer is missed-call text-back and booking — deliberately simpler and less intrusive than making every caller talk to a robot.</p></details>
+    <details><summary>Can a customer reach a real person?</summary><p>Yes. Your team can take over any conversation, and urgent or complex jobs route straight to a human on your rules.</p></details>
+    <details><summary>Will it promise times we can't honor?</summary><p>No. Availability and booking rules are defined with you. It offers approved windows, requests a callback, or hands off — never invents.</p></details>
+    <details><summary>We are a barber shop / salon, not a big home-service company. Is this for us?</summary><p>Yes — if you live on bookings. The system books the chair with the right barber or stylist, and sends reminders that cut no-shows. Your ticket is smaller, so for appointment shops the pilot is built around filling chairs and keeping regulars, not one big job.</p></details>
+    <details><summary>I run a clinic — what about patient privacy?</summary><p>The text-back never asks for medical details, symptoms, or records — only a name, the kind of appointment, and a time. Anything medical goes to your team on a call, exactly the way it does today. Booking basics by text; healthcare stays in the room.</p></details>
+    <details><summary>What about other local businesses?</summary><p>If customers call to book and a missed call means they go elsewhere — auto repair, cleaning, landscaping — the same system fits. The questions and booking rules are built for your trade.</p></details>
+    <details><summary>Why is the audit free? What's the catch?</summary><p>No catch. The audit is a 15-minute call where we count your missed calls and price what they cost you. If the number is small, we will tell you not to buy. If it is big, the pilot sells itself — that's the whole strategy.</p></details>
+    <details><summary>What do I pay after the pilot, exactly?</summary><p>$500/month for the full system — text-back, website chat, booking, reminders, and support. Your $500 pilot fee is credited in full, so you never pay it twice. Every price is in the pricing section above; there is no second price list on a sales call.</p></details>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>How many jobs called someone else last month?</h2>
+    <p>Bring your missed-call problem. We'll show you the smallest useful pilot — not a bloated automation project.</p>
+    <a class="btn" href="https://cal.com/saqib-naseer/never-miss-calls-intro-call">Book a 15-minute call</a>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Never Miss Calls</span><span>saqibnaseer077@gmail.com</span></div></footer>
+
+<script>
+(function(){
+  var section=document.getElementById('missedWeek');
+  if(!section) return;
+  var cards=Array.prototype.slice.call(section.querySelectorAll('.job-card'));
+  var totalEl=document.getElementById('stackTotal');
+  var prices=cards.map(function(c){return parseInt(c.getAttribute('data-price'),10)||0;});
+  var fullTotal=prices.reduce(function(a,b){return a+b;},0);
+  var fmt=function(n){return '$'+n.toLocaleString('en-US');};
+  var lastN=-1;
+  function render(){
+    var n,i,sum;
+    if(window.innerWidth<900){
+      cards.forEach(function(c){c.classList.add('show');});
+      totalEl.textContent=fmt(fullTotal);
+      return;
+    }
+    var r=section.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var scrollable=section.offsetHeight-vh;
+    var p=scrollable>0?(-r.top/scrollable):1;
+    p=Math.max(0,Math.min(1,p));
+    n=Math.round(p*cards.length);
+    if(n===lastN) return;
+    lastN=n; sum=0;
+    for(i=0;i<cards.length;i++){
+      var on=i<n;
+      cards[i].classList.toggle('show',on);
+      if(on) sum+=prices[i];
+    }
+    totalEl.textContent=fmt(sum);
+    totalEl.classList.remove('pop'); void totalEl.offsetWidth; totalEl.classList.add('pop');
+  }
+  window.addEventListener('scroll',render,{passive:true});
+  window.addEventListener('resize',function(){lastN=-1;render();});
+  render();
+})();
+</script>
+<script src="https://app.talktoclient.com/widget.js" data-key="qdYMZTnV4JGfUzCIghgjjD5HjSuh8hB2" data-api="https://talktoclient-crm.onrender.com"></script>
+</body>
+</html>
